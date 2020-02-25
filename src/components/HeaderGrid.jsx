@@ -86,7 +86,7 @@ const HeaderGrid = () => {
 	const [gridData, setGridData] = useState([]);
 
 	useEffect(() => {
-		let url = `http://newsapi.org/v2/top-headlines?sources=bbc-news&pageSize=3&apiKey=${
+		let url = `https://newsapi.org/v2/top-headlines?sources=bbc-news&pageSize=3&apiKey=${
 			process.env.API_KEY
 		}`;
 

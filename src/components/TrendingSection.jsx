@@ -60,7 +60,7 @@ const TrendingSection = () => {
 	const [trendingData, setTrendingData] = useState([]);
 
 	useEffect(() => {
-		const url = `http://newsapi.org/v2/top-headlines?sources=google-news&pageSize=4&apiKey=${
+		const url = `https://newsapi.org/v2/top-headlines?sources=google-news&pageSize=4&apiKey=${
 			process.env.API_KEY
 		}`;
 		axios.get(url).then(res => {

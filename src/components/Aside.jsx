@@ -117,7 +117,7 @@ const Aside = () => {
 	const [featuredNews, setFeaturedNews] = useState([]);
 
 	useEffect(() => {
-		const url = `http://newsapi.org/v2/everything?sources=entertainment-weekly&pageSize=3&apiKey=${
+		const url = `https://newsapi.org/v2/everything?sources=entertainment-weekly&pageSize=3&apiKey=${
 			process.env.API_KEY
 		}`;
 
