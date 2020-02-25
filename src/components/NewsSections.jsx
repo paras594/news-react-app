@@ -81,7 +81,8 @@ const NewsSections = ({ category, categoryUrl }) => {
 									<h3>{article.title}</h3>
 									<p>
 										{truncate(article.description, 120)}
-										{article.description.length > 120 ? (
+										{article.description &&
+										article.description.length > 120 ? (
 											<a href="#">more</a>
 										) : (
 											""
