@@ -5,28 +5,14 @@ import Container from "./styles/Container";
 
 import Navbar from "./components/Navbar";
 import TopicsNav from "./components/TopicsNav";
-import HeaderGrid from "./components/HeaderGrid";
-import TrendingSection from "./components/TrendingSection";
-import Sources from "./components/Sources";
-import Main from "./components/Main";
-import Aside from "./components/Aside";
-
-const FlexContainer = styled.section`
-	display: flex;
-`;
+import Homepage from "./routes/Homepage";
 
 const App = () => {
 	return (
 		<Container>
 			<Navbar />
 			<TopicsNav />
-			<HeaderGrid />
-			<TrendingSection />
-			<Sources />
-			<FlexContainer>
-				<Main />
-				<Aside />
-			</FlexContainer>
+			<Homepage />
 		</Container>
 	);
 };

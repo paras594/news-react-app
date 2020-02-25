@@ -8,34 +8,72 @@ const Section = styled.section`
 	margin-right: auto;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
-	width: 90%;
+	justify-content: space-evenly;
+	/*width: 90%;*/
 `;
 
 const Source = styled.a`
-	display: block;
-	border-radius: 2rem;
-	padding: 0.6rem 1.4rem;
-	margin: 0.7rem 0.5rem;
-	background: #eaeaea;
-	text-decoration: none;
-	color: rgba(0, 0, 0, 0.7);
-	font-weight: 600;
+	display: flex;
+	height: 7rem;
+	width: 7rem;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
 `;
 
 const Sources = () => {
 	return (
 		<Section>
-			<Source href="#">Google News</Source>
-			<Source href="#">CNN News</Source>
-			<Source href="#">ABP News</Source>
-			<Source href="#">Financial Times</Source>
-			<Source href="#">Bloomberg</Source>
-			<Source href="#">Aaj Tak</Source>
-			<Source href="#">News18</Source>
-			<Source href="#">Hindustan times</Source>
-			<Source href="#">ESPN</Source>
-			<Source href="#">Ten Sports</Source>
+			<Source href="#">
+				<img
+					src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_News_2019.svg/1200px-BBC_News_2019.svg.png"
+					alt=""
+				/>
+			</Source>
+			<Source href="#">
+				<img
+					src="https://pmcvariety.files.wordpress.com/2013/12/fox-news-logo.jpg?w=1000"
+					alt=""
+				/>
+			</Source>
+			<Source href="#">
+				<img
+					src="https://www.waterstudio.nl/wp-content/uploads/2014/08/CNN-logo-1024x616.jpg"
+					alt=""
+				/>
+			</Source>
+			<Source href="#">
+				<img
+					src="https://www.kindpng.com/picc/m/34-348847_al-jazeera-english-logo-hd-png-download.png"
+					alt=""
+				/>
+			</Source>
+			<Source href="#">
+				<img
+					src="https://upload.wikimedia.org/wikipedia/commons/3/39/Euronews._2016_alternative_logo.png"
+					alt=""
+				/>
+			</Source>
+			<Source href="#">
+				<img
+					src="https://assets0.uswitch.com/_img/library/news_image/sky_news_logo_634x306x24_expand_h8dc84238.jpg"
+					alt=""
+				/>
+			</Source>
+			<Source href="#">
+				<img
+					src="https://images-eu.ssl-images-amazon.com/images/I/310vvusqwQL.png"
+					alt=""
+				/>
+			</Source>
 		</Section>
 	);
 };

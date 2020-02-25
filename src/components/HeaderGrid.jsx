@@ -1,11 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { truncate } from "../utility/helper";
+
+const Description = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding: 1rem;
+	background: rgb(0, 0, 0);
+	background: linear-gradient(
+		0deg,
+		rgba(0, 0, 0, 0.7) 0%,
+		rgba(0, 0, 0, 0.5) 40%,
+		rgba(0, 0, 0, 0.3) 70%,
+		rgba(0, 0, 0, 0) 100%
+	);
+
+	h1 {
+		color: #fff;
+		font-size: 1.4rem;
+		line-height: 1.3;
+		margin-bottom: 0.4rem;
+	}
+
+	h2 {
+		font-size: 1.1rem;
+		color: #fff;
+		line-height: 1.3;
+		margin-bottom: 0.2rem;
+	}
+
+	p {
+		font-weight: 500;
+		line-height: 1.4;
+		font-size: ${props => props.pSize};
+		color: rgba(255, 255, 255, 0.9);
+	}
+`;
 
 const Grid = styled.div`
 	display: grid;
+	grid-template-columns: 3fr 2fr;
+	grid-template-rows: 12rem 12rem;
 	grid-template-areas:
-		"first first second"
-		"first first third";
+		"first second"
+		"first third";
 	gap: 0.8rem;
 
 	div {
@@ -15,8 +60,9 @@ const Grid = styled.div`
 	}
 
 	img {
-		width: 100%;
 		height: 100%;
+		width: 100%;
+
 		object-fit: cover;
 	}
 
@@ -28,76 +74,72 @@ const Grid = styled.div`
 	.second {
 		position: relative;
 		grid-area: second;
-		height: calc(90vw / 3 / 2.2);
 	}
 
 	.third {
 		position: relative;
 		grid-area: third;
-		height: calc(90vw / 3 / 2.2);
-	}
-
-	h1 {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		color: #fff;
-		font-size: 1.4rem;
-		margin: 0.6rem 0.8rem;
-		padding: 0.2rem;
-		background: rgba(0, 0, 0, 0.4);
-		border-radius: 0.4rem;
-	}
-	h2 {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		color: #fff;
-		font-size: 1.1rem;
-		margin: 0.6rem 0.8rem;
-		padding: 0.2rem;
-		background: rgba(0, 0, 0, 0.4);
-		border-radius: 0.4rem;
 	}
 `;
 
 const HeaderGrid = () => {
-	return (
+	const [gridData, setGridData] = useState([]);
+
+	useEffect(() => {
+		let url = `http://newsapi.org/v2/top-headlines?sources=bbc-news&pageSize=3&apiKey=${
+			process.env.API_KEY
+		}`;
+
+		axios.get(url).then(res => {
+			let { articles } = res.data;
+			setGridData(articles);
+		});
+	}, []);
+
+	/*
+		[
+			{
+				"source":{"id":"bbc-news","name":"BBC News"},
+				"author":"BBC News",
+				"title":"Harvey Weinstein accusers welcome rape conviction",
+				"description":"Lawyers for the ex-movie mogul, who is taken to hospital with reported chest pains, vow to appeal.",
+				"url":"http://www.bbc.co.uk/news/world-us-canada-51624248",
+				"urlToImage":"https://ichef.bbci.co.uk/images/ic/1024x576/p084ml9j.jpg",
+				"publishedAt":"2020-02-25T04:20:54Z",
+				"content":"Media captionHarvey Weinstein survivors described as 'heroic'\r\nAccusers of Harvey Weinstein have welcomed the guilty verdicts in the rape and sexual assault case against the former Hollywood mogul.\r\nActress Rose McGowan told the BBC \"this is a great day\", whi… [+6176 chars]"
+			},
+		]
+
+	 */
+
+	return gridData.length > 0 ? (
 		<header>
 			<Grid>
 				<div className="first">
-					<img
-						src="https://cdn.cnn.com/cnnnext/dam/assets/200205151534-modern-explorers-space-photography-18-medium-tease.jpg"
-						alt=""
-					/>
-					<h1>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Nulla reprehenderit, reiciendis, ad obcaecati quidem ducimus!
-					</h1>
+					<img src={gridData[0].urlToImage} alt={gridData[0].author} />
+					<Description pSize="1rem">
+						<h1>{gridData[0].title}</h1>
+						<p>{truncate(gridData[0].description, 180)}</p>
+					</Description>
 				</div>
 				<div className="second">
-					<img
-						src="https://cdn.cnn.com/cnnnext/dam/assets/200128095812-mike-pompeo-file-medium-tease.jpg"
-						alt=""
-					/>
-					<h2>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Enim, quae quasi, facilis eius voluptates eos.
-					</h2>
+					<img src={gridData[1].urlToImage} alt={gridData[1].author} />
+					<Description pSize=".8rem">
+						<h2>{gridData[1].title}</h2>
+						<p>{truncate(gridData[1].description, 120)}</p>
+					</Description>
 				</div>
 				<div className="third">
-					<img
-						src="https://cdn.cnn.com/cnnnext/dam/assets/200220152131-panama-drug-bust-semi-submersible-boat-medium-tease.jpg"
-						alt=""
-					/>
-					<h2>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Nobis consequuntur nemo cum esse corrupti suscipit quo,
-						nesciunt et impedit incidunt.
-					</h2>
+					<img src={gridData[2].urlToImage} alt={gridData[2].author} />
+					<Description pSize=".8rem">
+						<h2>{gridData[2].title}</h2>
+						<p>{truncate(gridData[2].description, 120)}</p>
+					</Description>
 				</div>
 			</Grid>
 		</header>
+	) : (
+		<h1>Loading...</h1>
 	);
 };
 
