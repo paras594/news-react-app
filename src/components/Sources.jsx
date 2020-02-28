@@ -1,5 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import BBCNews from "../images/source-bbc-news.png";
+import FoxNews from "../images/source-fox-news.jpg";
+import CNNNews from "../images/source-cnn-news.jpg";
+import Aljazeera from "../images/source-aljazeera-news.png";
+import EuroNews from "../images/source-euro-news.png";
+import NBCNews from "../images/source-nbc-news.png";
+import NDTVNews from "../images/source-ndtv-news.png";
 
 const Section = styled.section`
 	margin-top: 5rem;
@@ -32,47 +39,33 @@ const Source = styled.a`
 const Sources = () => {
 	return (
 		<Section>
+			{/* http://newsapi.org/v2/everything?sources=bbc-news&apiKey=${process.env.API_KEY} */}
 			<Source href="#">
-				<img
-					src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/BBC_News_2019.svg/1200px-BBC_News_2019.svg.png"
-					alt=""
-				/>
+				<img src={BBCNews} alt="BBC-News Logo" />
 			</Source>
+			{/* http://newsapi.org/v2/everything?sources=fox-news&apiKey=${process.env.API_KEY} */}
 			<Source href="#">
-				<img
-					src="https://pmcvariety.files.wordpress.com/2013/12/fox-news-logo.jpg?w=1000"
-					alt=""
-				/>
+				<img src={FoxNews} alt="Fox-News Logo" />
 			</Source>
+			{/* http://newsapi.org/v2/everything?sources=cnn&apiKey=${process.env.API_KEY} */}
 			<Source href="#">
-				<img
-					src="https://www.waterstudio.nl/wp-content/uploads/2014/08/CNN-logo-1024x616.jpg"
-					alt=""
-				/>
+				<img src={CNNNews} alt="CNN-News Logo" />
 			</Source>
+			{/* http://newsapi.org/v2/everything?sources=al-jazeera-english&apiKey=${process.env.API_KEY} */}
 			<Source href="#">
-				<img
-					src="https://www.kindpng.com/picc/m/34-348847_al-jazeera-english-logo-hd-png-download.png"
-					alt=""
-				/>
+				<img src={Aljazeera} alt="Aljazeera-News Logo" />
 			</Source>
+			{/* http://newsapi.org/v2/everything?domains=euronews.com&language=en&apiKey=${process.env.API_KEY} */}
 			<Source href="#">
-				<img
-					src="https://upload.wikimedia.org/wikipedia/commons/3/39/Euronews._2016_alternative_logo.png"
-					alt=""
-				/>
+				<img src={EuroNews} alt="Euro-News Logo" />
 			</Source>
+			{/* http://newsapi.org/v2/everything?sources=nbc-news&apiKey=${process.env.API_KEY} */}
 			<Source href="#">
-				<img
-					src="https://assets0.uswitch.com/_img/library/news_image/sky_news_logo_634x306x24_expand_h8dc84238.jpg"
-					alt=""
-				/>
+				<img src={NBCNews} alt="NBC-News Logo" />
 			</Source>
+			{/* http://newsapi.org/v2/everything?domains=ndtv.com&apiKey=${process.env.API_KEY} */}
 			<Source href="#">
-				<img
-					src="https://images-eu.ssl-images-amazon.com/images/I/310vvusqwQL.png"
-					alt=""
-				/>
+				<img src={NDTVNews} alt="NDTV-News Logo" />
 			</Source>
 		</Section>
 	);

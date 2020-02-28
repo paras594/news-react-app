@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
-import { truncate } from "../utility/helper";
+import TrendingItem from "./TrendingItem";
+import { v4 as uuid } from "uuid";
 
 const Section = styled.section`
-	margin: 3rem 0;
+	margin-top: 4.2rem;
+	margin-bottom: 3rem;
 `;
 
 const Header = styled.div`
 	display: flex;
 	justify-content: space-between;
+
+	h2 {
+		font-size: 2rem;
+	}
 `;
 
 const Items = styled.div`
@@ -18,31 +25,6 @@ const Items = styled.div`
 	column-gap: 1rem;
 	/* border: 1px solid black; */
 	margin: 1rem 0;
-`;
-
-const Item = styled.div`
-	/* border: 1px solid red; */
-	img {
-		border-radius: 0.6rem;
-		width: 100%;
-		height: 10rem;
-		object-fit: cover;
-	}
-
-	h2 {
-		font-size: 1rem;
-		padding: 0.1rem 0.3rem;
-		line-height: 1.3;
-		color: rgba(0, 0, 0, 1);
-		margin-bottom: 0.2rem;
-	}
-	p {
-		font-size: 0.8rem;
-		padding: 0 0.3rem;
-		line-height: 1.4;
-		color: rgba(0, 0, 0, 0.9);
-		font-weight: 500;
-	}
 `;
 
 const Button = styled.button`
@@ -58,11 +40,16 @@ const Button = styled.button`
 
 const TrendingSection = () => {
 	const [trendingData, setTrendingData] = useState([]);
+	const url = `https://newsapi.org/v2/top-headlines?sources=cnn&pageSize=4&apiKey=${
+		process.env.API_KEY
+	}`;
+	const fullDataUrl = `https://newsapi.org/v2/everything?sources=cnn&language=en&apiKey=${
+		process.env.API_KEY
+	}`;
+
+	const category = "Trending";
 
 	useEffect(() => {
-		const url = `https://newsapi.org/v2/top-headlines?sources=google-news&pageSize=4&apiKey=${
-			process.env.API_KEY
-		}`;
 		axios.get(url).then(res => {
 			let { articles } = res.data;
 			setTrendingData(articles);
@@ -73,21 +60,24 @@ const TrendingSection = () => {
 		<Section>
 			<Header>
 				<h2>Trending</h2>
-				<Button>View More</Button>
+				<Link
+					to={{
+						pathname: "/viewmore",
+						state: { url: fullDataUrl, category },
+					}}
+				>
+					<Button>View More</Button>
+				</Link>
 			</Header>
 
 			<Items>
 				{trendingData.map(article => (
-					<Item key={article.url}>
-						<img src={article.urlToImage} alt={article.author} />
-						<h2>{article.title}</h2>
-						<p>{truncate(article.description, 180)}</p>
-					</Item>
+					<TrendingItem key={uuid()} article={article} />
 				))}
 			</Items>
 		</Section>
 	) : (
-		<h1>loading...</h1>
+		<h1>Loading...</h1>
 	);
 };
 

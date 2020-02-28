@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { truncate } from "../utility/helper";
+import noImgPlaceholder from "../images/no-img-available.jpg";
 
 const Description = styled.div`
 	position: absolute;
@@ -24,23 +25,25 @@ const Description = styled.div`
 
 	h1 {
 		color: #fff;
-		font-size: 1.4rem;
+		font-size: 2rem;
 		line-height: 1.3;
 		margin-bottom: 0.4rem;
+		font-weight: 700;
 	}
 
 	h2 {
-		font-size: 1.1rem;
+		font-size: 1.2rem;
 		color: #fff;
 		line-height: 1.3;
-		margin-bottom: 0.2rem;
+		font-weight: 600;
+		margin-bottom: 0.4rem;
 	}
 
 	p {
 		font-weight: 500;
 		line-height: 1.4;
 		font-size: ${props => props.pSize};
-		color: rgba(255, 255, 255, 0.9);
+		color: rgba(255, 255, 255, 0.85);
 	}
 `;
 
@@ -92,6 +95,21 @@ const HeaderGrid = () => {
 
 		axios.get(url).then(res => {
 			let { articles } = res.data;
+
+			articles.forEach(article => {
+				if (!article.urlToImage) {
+					article.urlToImage = noImgPlaceholder;
+				}
+
+				if (!article.author) {
+					article.author = "Headlines";
+				}
+
+				if (!article.description) {
+					article.description = "No description available for this.";
+				}
+			});
+
 			setGridData(articles);
 		});
 	}, []);
@@ -125,15 +143,15 @@ const HeaderGrid = () => {
 				<div className="second">
 					<img src={gridData[1].urlToImage} alt={gridData[1].author} />
 					<Description pSize=".8rem">
-						<h2>{gridData[1].title}</h2>
-						<p>{truncate(gridData[1].description, 120)}</p>
+						<h2>{truncate(gridData[1].title, 100)}</h2>
+						<p>{truncate(gridData[1].description, 100)}</p>
 					</Description>
 				</div>
 				<div className="third">
 					<img src={gridData[2].urlToImage} alt={gridData[2].author} />
 					<Description pSize=".8rem">
-						<h2>{gridData[2].title}</h2>
-						<p>{truncate(gridData[2].description, 120)}</p>
+						<h2>{truncate(gridData[2].title, 100)}</h2>
+						<p>{truncate(gridData[2].description, 100)}</p>
 					</Description>
 				</div>
 			</Grid>

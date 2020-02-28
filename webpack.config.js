@@ -11,7 +11,7 @@ module.exports = {
 	},
 	devtool: "source-map",
 	devServer: {
-		port: 3000,
+		port: 5000,
 		contentBase: path.resolve(__dirname, "build"),
 		watchContentBase: true,
 		// proxy: {
@@ -19,6 +19,11 @@ module.exports = {
 		// 		target: "http://localhost:5000",
 		// 	},
 		// }
+	},
+	optimization: {
+		splitChunks: {
+			chunks: "all",
+		},
 	},
 	resolve: {
 		extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
