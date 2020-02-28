@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import FeaturedItem from "./FeaturedItem";
+import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
 
@@ -11,6 +12,10 @@ const Div = styled.div`
 	background: #efefef;
 	width: 100%;
 	padding: 1rem 1.6rem;
+
+	a {
+		text-decoration: none;
+	}
 `;
 
 const FeaturedItems = styled.div`
@@ -38,12 +43,16 @@ const Button = styled.button`
 
 const AsideFeaturedNews = () => {
 	const [featuredNews, setFeaturedNews] = useState([]);
+	const url = `https://newsapi.org/v2/everything?sources=entertainment-weekly&pageSize=3&apiKey=${
+		process.env.API_KEY
+	}`;
+	const category = "Featured News";
+
+	const fullDataUrl = `https://newsapi.org/v2/everything?sources=entertainment-weekly&apiKey=${
+		process.env.API_KEY
+	}`;
 
 	useEffect(() => {
-		const url = `https://newsapi.org/v2/everything?sources=entertainment-weekly&pageSize=3&apiKey=${
-			process.env.API_KEY
-		}`;
-
 		axios.get(url).then(res => {
 			const { articles } = res.data;
 			setFeaturedNews(articles);
@@ -59,7 +68,14 @@ const AsideFeaturedNews = () => {
 							<FeaturedItem key={uuid()} article={article} />
 						))}
 					</FeaturedItems>
-					<Button>View More</Button>
+					<Link
+						to={{
+							pathname: "/viewmore",
+							state: { url: fullDataUrl, category },
+						}}
+					>
+						<Button>View More</Button>
+					</Link>
 				</>
 			) : (
 				<h3>Loading...</h3>

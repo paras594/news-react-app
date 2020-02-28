@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { v4 as uuid } from "uuid";
@@ -9,6 +10,10 @@ const Section = styled.section`
 
 	h2 {
 		font-size: 2rem;
+	}
+
+	a {
+		text-decoration: none;
 	}
 `;
 
@@ -29,10 +34,16 @@ const NewsSections = ({ category, categoryUrl }) => {
 	const [sectionData, setSectionData] = useState([]);
 
 	useEffect(() => {
-		axios.get(categoryUrl).then(res => {
-			const { articles } = res.data;
-			setSectionData(articles);
-		});
+		axios
+			.get(categoryUrl, {
+				params: {
+					pageSize: 4,
+				},
+			})
+			.then(res => {
+				const { articles } = res.data;
+				setSectionData(articles);
+			});
 	}, []);
 
 	return (
@@ -45,7 +56,14 @@ const NewsSections = ({ category, categoryUrl }) => {
 							<NewsItem key={uuid()} article={article} />
 						))}
 					</NewsContents>
-					<Button>View More</Button>
+					<Link
+						to={{
+							pathname: "/viewmore",
+							state: { url: categoryUrl, category },
+						}}
+					>
+						<Button>View More</Button>
+					</Link>
 				</>
 			) : (
 				<h3>Loading...</h3>
