@@ -1,9 +1,14 @@
+/* 
+	TODO: add view more button
+*/
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import TrendingItem from "./TrendingItem";
 import { v4 as uuid } from "uuid";
+import { H1 } from "../../styles/Headings";
 
 const Section = styled.section`
 	margin-top: 4.2rem;
@@ -59,7 +64,7 @@ const TrendingSection = () => {
 	return trendingData.length > 0 ? (
 		<Section>
 			<Header>
-				<h2>Trending</h2>
+				<H1>Trending</H1>
 				<Link
 					to={{
 						pathname: "/viewmore",

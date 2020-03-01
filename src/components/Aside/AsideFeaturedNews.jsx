@@ -1,31 +1,24 @@
+/* 
+	TODO: add view more button
+*/
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import FeaturedItem from "./FeaturedItem";
-import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import axios from "axios";
+import A from "../../styles/A";
 
 const Div = styled.div`
 	border-radius: 1rem;
 	align-self: flex-start;
-	/*border: 1px solid red;*/
 	background: #efefef;
 	width: 100%;
 	padding: 1rem 1.6rem;
-
-	a {
-		text-decoration: none;
-	}
-`;
-
-const FeaturedItems = styled.div`
-	/*border: 1px solid blue;*/
 `;
 
 const H3 = styled.h3`
 	margin-top: 0.5rem;
 	margin-bottom: 0.8rem;
-	/*padding: 0 1rem;*/
 	font-size: 1.4rem;
 `;
 
@@ -63,19 +56,20 @@ const AsideFeaturedNews = () => {
 			<H3>Featured News</H3>
 			{featuredNews.length > 0 ? (
 				<>
-					<FeaturedItems>
+					<div>
 						{featuredNews.map(article => (
 							<FeaturedItem key={uuid()} article={article} />
 						))}
-					</FeaturedItems>
-					<Link
+					</div>
+
+					<A
 						to={{
 							pathname: "/viewmore",
 							state: { url: fullDataUrl, category },
 						}}
 					>
 						<Button>View More</Button>
-					</Link>
+					</A>
 				</>
 			) : (
 				<h3>Loading...</h3>

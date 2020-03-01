@@ -4,14 +4,14 @@ import { v4 as uuid } from "uuid";
 
 import NewsSections from "./NewsSections";
 import newsCategories from "../../utility/newsCategories";
-const Div = styled.div`
-	/*border: 1px solid black;*/
+
+const Flex = styled.div`
 	flex: 1;
 `;
 
 const Main = () => {
 	return (
-		<Div>
+		<Flex>
 			{newsCategories.map(item => (
 				<NewsSections
 					key={uuid()}
@@ -19,7 +19,7 @@ const Main = () => {
 					categoryUrl={item.categoryUrl}
 				/>
 			))}
-		</Div>
+		</Flex>
 	);
 };
 

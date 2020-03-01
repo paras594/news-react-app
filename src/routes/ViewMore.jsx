@@ -5,6 +5,7 @@ import Aside from "../components/Aside/Aside";
 import ViewMoreContent from "../components/ViewMoreContent";
 import Pagination from "../components/Pagination";
 import axios from "axios";
+import { H1 } from "../styles/Headings";
 
 const FlexContainer = styled.section`
 	display: flex;
@@ -39,11 +40,11 @@ const ViewMore = () => {
 			.catch(err => {
 				console.log(err.response);
 			});
-	}, [currentPage]);
+	}, [currentPage, url]);
 
 	return (
 		<>
-			<h1>{category}</h1>
+			<H1>{category}</H1>
 			<FlexContainer>
 				{viewMoreData.length > 0 ? (
 					<Main>

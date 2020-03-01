@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { truncate, formatDate } from "../../utility/helper";
-import noImgPlaceholder from "../../images/no-img-available.jpg";
+import { truncate, formatDate } from "../utility/helper";
+import noImgPlaceholder from "../images/no-img-available.jpg";
+import A from "../styles/A";
+import { H4 } from "../styles/Headings";
+import P from "../styles/P";
 
 const Item = styled.div`
 	display: grid;
@@ -19,6 +22,7 @@ const ImgContainer = styled.div`
 	overflow: hidden;
 	height: calc(12rem / 1.5);
 	border-right: 1px solid rgba(0, 0, 0, 0.2);
+
 	img {
 		display: block;
 		width: 100%;
@@ -32,16 +36,10 @@ const Content = styled.div`
 	padding-bottom: 0.7rem;
 	padding-left: 0.7rem;
 	padding-right: 0.8rem;
-	h3 {
-		font-size: 1.1rem;
-		margin-bottom: 1rem;
-	}
+`;
 
-	p {
-		font-size: 0.8rem;
-		font-weight: 500;
-		color: rgba(0, 0, 0, 0.8);
-	}
+const Title = styled(H4)`
+	margin-bottom: 1rem;
 `;
 
 const NewsItem = ({ article }) => {
@@ -63,8 +61,19 @@ const NewsItem = ({ article }) => {
 				<img src={article.urlToImage} alt={article.author} />
 			</ImgContainer>
 			<Content>
-				<h3>{truncate(article.title, 100)}</h3>
-				<p>Published At: {formatDate(article.publishedAt)}</p>
+				<Title>
+					<A
+						to={{
+							pathname: "/news-content",
+							state: { article },
+						}}
+					>
+						{truncate(article.title, 100)}
+					</A>
+				</Title>
+				<P size=".8rem" weight="500" color="rgba(0, 0, 0, .8)">
+					Published At: {formatDate(article.publishedAt)}
+				</P>
 			</Content>
 		</Item>
 	);

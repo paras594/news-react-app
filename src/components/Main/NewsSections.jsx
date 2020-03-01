@@ -1,23 +1,21 @@
+/* 
+	TODO: add view more button
+*/
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 import { v4 as uuid } from "uuid";
-import NewsItem from "./NewsItem";
+import NewsItem from "../NewsItem";
+import { H1 } from "../../styles/Headings";
 
 const Section = styled.section`
 	margin-bottom: 2.4rem;
-
-	h2 {
-		font-size: 2rem;
-	}
 
 	a {
 		text-decoration: none;
 	}
 `;
-
-const NewsContents = styled.section``;
 
 const Button = styled.button`
 	border: none;
@@ -48,14 +46,14 @@ const NewsSections = ({ category, categoryUrl }) => {
 
 	return (
 		<Section>
-			<h2>{category}</h2>
+			<H1>{category}</H1>
 			{sectionData.length > 0 ? (
 				<>
-					<NewsContents>
+					<div>
 						{sectionData.map(article => (
 							<NewsItem key={uuid()} article={article} />
 						))}
-					</NewsContents>
+					</div>
 					<Link
 						to={{
 							pathname: "/viewmore",

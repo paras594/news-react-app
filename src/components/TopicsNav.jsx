@@ -1,35 +1,55 @@
+/* 
+	TODO: add links 
+*/
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import newsCategories from "../utility/newsCategories";
+import { v4 as uuid } from "uuid";
 
 const TopicsList = styled.div`
 	background: #eee;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: center;
 	margin-top: 0.2rem;
 	margin-bottom: 2rem;
 	border-radius: 4rem;
 	height: 2.4rem;
+`;
 
-	p {
-		font-weight: 500;
-		color: rgba(0, 0, 0, 0.8);
-		font-size: 0.9rem;
+const A = styled(Link)`
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.8);
+	font-size: 0.9rem;
+	text-decoration: none;
+	border-radius: 2rem;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding: 0 1rem;
+	transition: background 0.25s ease-in-out;
+
+	&:hover {
+		background: #ccc;
 	}
 `;
 
 const TopicsNav = () => {
 	return (
 		<TopicsList>
-			<p>International</p>
-			<p>National</p>
-			<p>Sports</p>
-			<p>Politics</p>
-			<p>Business</p>
-			<p>Technology</p>
-			<p>Bollywood</p>
-			<p>Hollywood</p>
-			<p>Entertainment</p>
+			<A to="">National</A>
+			{newsCategories.map(news => (
+				<A
+					key={uuid()}
+					to={{
+						pathname: "/viewmore",
+						state: { url: news.categoryUrl, category: news.category },
+					}}
+				>
+					{news.category}
+				</A>
+			))}
 		</TopicsList>
 	);
 };

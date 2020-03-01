@@ -5,7 +5,6 @@ import AsideFeaturedNews from "./AsideFeaturedNews";
 
 const AsideContainer = styled.div`
 	margin-left: 2rem;
-	/*border: 1px solid red;*/
 	width: 20rem;
 `;
 
