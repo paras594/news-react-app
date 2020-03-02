@@ -45,7 +45,7 @@ const Sources = () => {
 				to={{
 					pathname: "/viewmore",
 					state: {
-						url: `http://newsapi.org/v2/everything?sources=bbc-news&apiKey=${
+						url: `https://newsapi.org/v2/everything?sources=bbc-news&apiKey=${
 							process.env.API_KEY
 						}`,
 						category: "BBC News",
@@ -59,7 +59,7 @@ const Sources = () => {
 				to={{
 					pathname: "/viewmore",
 					state: {
-						url: `http://newsapi.org/v2/everything?sources=fox-news&apiKey=${
+						url: `https://newsapi.org/v2/everything?sources=fox-news&apiKey=${
 							process.env.API_KEY
 						}`,
 						category: "Fox News",
@@ -73,7 +73,7 @@ const Sources = () => {
 				to={{
 					pathname: "/viewmore",
 					state: {
-						url: `http://newsapi.org/v2/everything?sources=cnn&apiKey=${
+						url: `https://newsapi.org/v2/everything?sources=cnn&apiKey=${
 							process.env.API_KEY
 						}`,
 						category: "CNN News",
@@ -87,7 +87,7 @@ const Sources = () => {
 				to={{
 					pathname: "/viewmore",
 					state: {
-						url: `http://newsapi.org/v2/everything?sources=al-jazeera-english&apiKey=${
+						url: `https://newsapi.org/v2/everything?sources=al-jazeera-english&apiKey=${
 							process.env.API_KEY
 						}`,
 						category: "Aljazeera News",
@@ -101,7 +101,7 @@ const Sources = () => {
 				to={{
 					pathname: "/viewmore",
 					state: {
-						url: `http://newsapi.org/v2/everything?domains=euronews.com&language=en&apiKey=${
+						url: `https://newsapi.org/v2/everything?domains=euronews.com&language=en&apiKey=${
 							process.env.API_KEY
 						}`,
 						category: "Euro News",
@@ -115,7 +115,7 @@ const Sources = () => {
 				to={{
 					pathname: "/viewmore",
 					state: {
-						url: `http://newsapi.org/v2/everything?sources=nbc-news&apiKey=${
+						url: `https://newsapi.org/v2/everything?sources=nbc-news&apiKey=${
 							process.env.API_KEY
 						}`,
 						category: "NBC News",
@@ -129,7 +129,7 @@ const Sources = () => {
 				to={{
 					pathname: "/viewmore",
 					state: {
-						url: `http://newsapi.org/v2/everything?domains=ndtv.com&apiKey=${
+						url: `https://newsapi.org/v2/everything?domains=ndtv.com&apiKey=${
 							process.env.API_KEY
 						}`,
 						category: "NDTV News",
