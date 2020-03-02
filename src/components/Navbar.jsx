@@ -58,7 +58,7 @@ const Navbar = () => {
 	function handleFormSubmit(e) {
 		e.preventDefault();
 		history.push("/viewmore", {
-			url: `http://newsapi.org/v2/everything?qInTitle=${value}&apiKey=${
+			url: `https://newsapi.org/v2/everything?qInTitle=${value}&apiKey=${
 				process.env.API_KEY
 			}`,
 			category: "Search Results",
