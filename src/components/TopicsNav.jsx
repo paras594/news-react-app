@@ -16,6 +16,7 @@ const TopicsList = styled.div`
 	margin-bottom: 2rem;
 	border-radius: 4rem;
 	height: 2.4rem;
+	z-index: 99;
 `;
 
 const A = styled(Link)`

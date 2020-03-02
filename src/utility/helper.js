@@ -1,4 +1,5 @@
 import moment from "moment";
+import { useLocation } from "react-router-dom";
 
 export function formatDate(dateStr) {
 	let date = moment(dateStr);
@@ -16,4 +17,14 @@ export function truncate(str, limit) {
 	} else {
 		return str + " ";
 	}
+}
+
+export function isHome() {
+	const location = useLocation();
+	const fullpath = location.pathname + location.hash;
+	const urlRegex = new RegExp("^/#w*", "i");
+
+	if (urlRegex.test(fullpath)) return true;
+	if (location.pathname === "/") return true;
+	return false;
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import styled from "styled-components";
 import Aside from "../components/Aside/Aside";
 import ViewMoreContent from "../components/ViewMoreContent";
@@ -13,6 +13,26 @@ const FlexContainer = styled.section`
 
 const Main = styled.div`
 	flex: 1;
+`;
+
+const A = styled(Link)`
+	border: none;
+	background: #eee;
+	border-radius: 1rem;
+	padding: 0.5rem 1.2rem;
+	font-size: 0.8rem;
+	font-weight: 400;
+	margin-bottom: 2rem;
+	display: inline-flex;
+	cursor: pointer;
+	text-decoration: none;
+	color: #000;
+	align-items: center;
+
+	i {
+		font-size: 0.9rem;
+		margin-right: 0.3rem;
+	}
 `;
 
 const ViewMore = () => {
@@ -44,6 +64,9 @@ const ViewMore = () => {
 
 	return (
 		<>
+			<A to="/">
+				<i class="fas fa-angle-left" /> Go to Home
+			</A>
 			<H1>{category}</H1>
 			<FlexContainer>
 				{viewMoreData.length > 0 ? (

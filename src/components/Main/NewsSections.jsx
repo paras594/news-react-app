@@ -45,7 +45,7 @@ const NewsSections = ({ category, categoryUrl }) => {
 	}, []);
 
 	return (
-		<Section>
+		<Section id={category}>
 			<H1>{category}</H1>
 			{sectionData.length > 0 ? (
 				<>

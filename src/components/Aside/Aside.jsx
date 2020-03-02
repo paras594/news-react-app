@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import AsideForm from "./AsideForm";
 import AsideFeaturedNews from "./AsideFeaturedNews";
+import AsideSectionLinks from "./AsideSectionLinks";
+import { isHome } from "../../utility/helper";
 
 const AsideContainer = styled.div`
 	margin-left: 2rem;
@@ -11,8 +12,8 @@ const AsideContainer = styled.div`
 const Aside = () => {
 	return (
 		<AsideContainer>
-			<AsideForm />
 			<AsideFeaturedNews />
+			{isHome() ? <AsideSectionLinks /> : ""}
 		</AsideContainer>
 	);
 };

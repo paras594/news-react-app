@@ -5,13 +5,13 @@ import { v4 as uuid } from "uuid";
 import NewsSections from "./NewsSections";
 import newsCategories from "../../utility/newsCategories";
 
-const Flex = styled.div`
+const Div = styled.div`
 	flex: 1;
 `;
 
 const Main = () => {
 	return (
-		<Flex>
+		<Div>
 			{newsCategories.map(item => (
 				<NewsSections
 					key={uuid()}
@@ -19,7 +19,7 @@ const Main = () => {
 					categoryUrl={item.categoryUrl}
 				/>
 			))}
-		</Flex>
+		</Div>
 	);
 };
 
