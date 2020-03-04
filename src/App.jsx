@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Container from "./styles/Container";
 
@@ -8,6 +7,7 @@ import TopicsNav from "./components/TopicsNav";
 import Homepage from "./routes/Homepage";
 import ViewMore from "./routes/ViewMore";
 import NewsPage from "./routes/NewsPage";
+import CallFinishedErrorPage from "./routes/CallsFinishedErrorPage";
 
 const App = () => {
 	console.log(process.env.API_KEY);
@@ -20,6 +20,10 @@ const App = () => {
 					<Route exact path="/" component={Homepage} />
 					<Route path="/viewmore" component={ViewMore} />
 					<Route path="/news-content" component={NewsPage} />
+					<Route
+						path="/calls-finished"
+						component={CallFinishedErrorPage}
+					/>
 				</Switch>
 			</Container>
 		</Router>

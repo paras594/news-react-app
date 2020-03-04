@@ -9,6 +9,8 @@ import axios from "axios";
 import TrendingItem from "./TrendingItem";
 import { v4 as uuid } from "uuid";
 import { H1 } from "../../styles/Headings";
+import Loader from "../Loader";
+import { fadeInItem, fadeOutItem } from "../../styles/animations";
 
 const Section = styled.section`
 	margin-top: 4.2rem;
@@ -30,6 +32,7 @@ const Items = styled.div`
 	column-gap: 1rem;
 	/* border: 1px solid black; */
 	margin: 1rem 0;
+	animation: 1s ${fadeInItem};
 `;
 
 const Button = styled.button`
@@ -43,8 +46,21 @@ const Button = styled.button`
 	cursor: pointer;
 `;
 
+const LoaderContainer = styled.div`
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 1rem;
+	margin: 1rem 0;
+	height: 18rem;
+	width: 100%;
+	animation: 1s ${fadeOutItem};
+`;
+
 const TrendingSection = () => {
 	const [trendingData, setTrendingData] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 	const url = `https://newsapi.org/v2/top-headlines?sources=cnn&pageSize=4&apiKey=${
 		process.env.API_KEY
 	}`;
@@ -55,13 +71,21 @@ const TrendingSection = () => {
 	const category = "Trending";
 
 	useEffect(() => {
-		axios.get(url).then(res => {
-			let { articles } = res.data;
-			setTrendingData(articles);
-		});
+		setIsLoading(true);
+		axios
+			.get(url)
+			.then(res => {
+				let { articles } = res.data;
+				setTrendingData(articles);
+				setIsLoading(false);
+			})
+			.catch(err => {
+				console.log(err.response.data);
+				setIsLoading(false);
+			});
 	}, []);
 
-	return trendingData.length > 0 ? (
+	return (
 		<Section>
 			<Header>
 				<H1>Trending</H1>
@@ -75,14 +99,18 @@ const TrendingSection = () => {
 				</Link>
 			</Header>
 
-			<Items>
-				{trendingData.map(article => (
-					<TrendingItem key={uuid()} article={article} />
-				))}
-			</Items>
+			{isLoading ? (
+				<LoaderContainer>
+					<Loader />
+				</LoaderContainer>
+			) : (
+				<Items>
+					{trendingData.map(article => (
+						<TrendingItem key={uuid()} article={article} />
+					))}
+				</Items>
+			)}
 		</Section>
-	) : (
-		<h1>Loading...</h1>
 	);
 };
 

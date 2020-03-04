@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import newsCategories from "../utility/newsCategories";
 import { v4 as uuid } from "uuid";
+import NationalDropdownButton from "./NationalDropdownButton";
 
 const TopicsList = styled.div`
 	background: #eee;
@@ -39,7 +40,7 @@ const A = styled(Link)`
 const TopicsNav = () => {
 	return (
 		<TopicsList>
-			<A to="">National</A>
+			<NationalDropdownButton />
 			{newsCategories.map(news => (
 				<A
 					key={uuid()}

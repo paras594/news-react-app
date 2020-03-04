@@ -10,9 +10,8 @@ const Item = styled.div`
 	display: grid;
 	grid-template-columns: 14rem 1fr;
 	margin-top: 1rem;
-	margin-bottom: 1.5rem;
+	margin-bottom: 1rem;
 	margin-left: 0.4rem;
-	margin-right: 1.8rem;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 0.5rem;
 	overflow: hidden;

@@ -1,6 +1,6 @@
 const newsCategories = [
 	{
-		category: "General",
+		category: "International",
 		categoryUrl: `https://newsapi.org/v2/everything?sources=newsweek&apiKey=${
 			process.env.API_KEY
 		}`,

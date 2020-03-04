@@ -6,6 +6,12 @@ import noImgPlaceholder from "../images/no-img-available.jpg";
 import A from "../styles/A";
 import { H1, H3 } from "../styles/Headings";
 import P from "../styles/P";
+import Loader from "./Loader";
+import { fadeInItem, fadeOutItem } from "../styles/animations";
+
+const Header = styled.header`
+	animation: 1s ${fadeInItem};
+`;
 
 const Grid = styled.div`
 	display: grid;
@@ -72,37 +78,62 @@ const Title = styled(H3)`
 	margin-bottom: 0.4rem;
 `;
 
+const LoaderContainer = styled.div`
+	height: 25rem;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 1rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: 1s ${fadeOutItem};
+`;
+
 const HeaderGrid = () => {
 	const [gridData, setGridData] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		let url = `https://newsapi.org/v2/top-headlines?sources=bbc-news&pageSize=3&apiKey=${
 			process.env.API_KEY
 		}`;
 
-		axios.get(url).then(res => {
-			let { articles } = res.data;
+		setIsLoading(true);
 
-			articles.forEach(article => {
-				if (!article.urlToImage) {
-					article.urlToImage = noImgPlaceholder;
-				}
+		axios
+			.get(url)
+			.then(res => {
+				let { articles } = res.data;
 
-				if (!article.author) {
-					article.author = "Headlines";
-				}
+				articles.forEach(article => {
+					if (!article.urlToImage) {
+						article.urlToImage = noImgPlaceholder;
+					}
 
-				if (!article.description) {
-					article.description = "No description available for this.";
-				}
+					if (!article.author) {
+						article.author = "Headlines";
+					}
+
+					if (!article.description) {
+						article.description = "No description available for this.";
+					}
+				});
+
+				setGridData(articles);
+				setIsLoading(false);
+			})
+			.catch(err => {
+				console.log(err.response.data);
+				setIsLoading(false);
 			});
-
-			setGridData(articles);
-		});
 	}, []);
 
-	return gridData.length > 0 ? (
-		<header>
+	return gridData.length < 1 || isLoading ? (
+		<LoaderContainer>
+			<Loader />
+		</LoaderContainer>
+	) : (
+		<Header>
 			<Grid>
 				<GridItem className="first">
 					<img src={gridData[0].urlToImage} alt={gridData[0].author} />
@@ -167,9 +198,7 @@ const HeaderGrid = () => {
 					</Description>
 				</GridItem>
 			</Grid>
-		</header>
-	) : (
-		<h1>Loading...</h1>
+		</Header>
 	);
 };
 

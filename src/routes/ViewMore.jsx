@@ -6,6 +6,8 @@ import ViewMoreContent from "../components/ViewMoreContent";
 import Pagination from "../components/Pagination";
 import axios from "axios";
 import { H1 } from "../styles/Headings";
+import Loader from "../components/Loader";
+import { fadeInItem, fadeOutItem } from "../styles/animations";
 
 const FlexContainer = styled.section`
 	display: flex;
@@ -13,6 +15,7 @@ const FlexContainer = styled.section`
 
 const Main = styled.div`
 	flex: 1;
+	animation: 1s ${fadeInItem};
 `;
 
 const A = styled(Link)`
@@ -35,16 +38,30 @@ const A = styled(Link)`
 	}
 `;
 
+const LoaderContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 1rem;
+	height: 40rem;
+	flex: 1;
+	animation: 1s ${fadeOutItem};
+`;
+
 const ViewMore = () => {
 	const [totalData, setTotalData] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [viewMoreData, setViewMoreData] = useState([]);
+	const [noDataFound, setNoDataFound] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const location = useLocation();
 	const { url, category } = location.state;
 	const pageSize = 10;
 	const maxDataLimit = 100;
 
 	useEffect(() => {
+		setIsLoading(true);
 		axios
 			.get(url, {
 				params: {
@@ -54,22 +71,35 @@ const ViewMore = () => {
 			})
 			.then(res => {
 				let { articles, totalResults } = res.data;
-				setTotalData(totalResults);
-				setViewMoreData(articles);
+				if (!articles.length) {
+					setIsLoading(false);
+					setNoDataFound(true);
+				} else {
+					setTotalData(totalResults);
+					setViewMoreData(articles);
+					setIsLoading(false);
+				}
 			})
 			.catch(err => {
-				console.log(err.response);
+				console.log(err.response.data);
+				setIsLoading(false);
 			});
 	}, [currentPage, url]);
 
 	return (
 		<>
 			<A to="/">
-				<i class="fas fa-angle-left" /> Go to Home
+				<i className="fas fa-angle-left" /> Go to Home
 			</A>
 			<H1>{category}</H1>
 			<FlexContainer>
-				{viewMoreData.length > 0 ? (
+				{noDataFound ? (
+					<h1>No Data Found</h1>
+				) : isLoading ? (
+					<LoaderContainer>
+						<Loader />
+					</LoaderContainer>
+				) : (
 					<Main>
 						<ViewMoreContent viewMoreData={viewMoreData} />
 						<Pagination
@@ -80,8 +110,6 @@ const ViewMore = () => {
 							setCurrentPage={setCurrentPage}
 						/>
 					</Main>
-				) : (
-					<h1>Loading...</h1>
 				)}
 				<Aside />
 			</FlexContainer>
