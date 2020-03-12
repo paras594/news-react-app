@@ -42,13 +42,7 @@ const TopicsNav = () => {
 		<TopicsList>
 			<NationalDropdownButton />
 			{newsCategories.map(news => (
-				<A
-					key={uuid()}
-					to={{
-						pathname: "/viewmore",
-						state: { url: news.categoryUrl, category: news.category },
-					}}
-				>
+				<A key={uuid()} to={`/viewmore/${news.category}`}>
 					{news.category}
 				</A>
 			))}

@@ -40,102 +40,25 @@ const Img = styled.img`
 const Sources = () => {
 	return (
 		<Section>
-			{/* http://newsapi.org/v2/everything?sources=bbc-news&apiKey=${process.env.API_KEY} */}
-			<StyledLink
-				to={{
-					pathname: "/viewmore",
-					state: {
-						url: `https://newsapi.org/v2/everything?sources=bbc-news&apiKey=${
-							process.env.API_KEY
-						}`,
-						category: "BBC News",
-					},
-				}}
-			>
+			<StyledLink to="/source/bbc-news">
 				<Img src={BBCNews} alt="BBC-News Logo" />
 			</StyledLink>
-			{/* http://newsapi.org/v2/everything?sources=fox-news&apiKey=${process.env.API_KEY} */}
-			<StyledLink
-				to={{
-					pathname: "/viewmore",
-					state: {
-						url: `https://newsapi.org/v2/everything?sources=fox-news&apiKey=${
-							process.env.API_KEY
-						}`,
-						category: "Fox News",
-					},
-				}}
-			>
+			<StyledLink to="/source/fox-news">
 				<Img src={FoxNews} alt="Fox-News Logo" />
 			</StyledLink>
-			{/* http://newsapi.org/v2/everything?sources=cnn&apiKey=${process.env.API_KEY} */}
-			<StyledLink
-				to={{
-					pathname: "/viewmore",
-					state: {
-						url: `https://newsapi.org/v2/everything?sources=cnn&apiKey=${
-							process.env.API_KEY
-						}`,
-						category: "CNN News",
-					},
-				}}
-			>
+			<StyledLink to="/source/cnn">
 				<Img src={CNNNews} alt="CNN-News Logo" />
 			</StyledLink>
-			{/* http://newsapi.org/v2/everything?sources=al-jazeera-english&apiKey=${process.env.API_KEY} */}
-			<StyledLink
-				to={{
-					pathname: "/viewmore",
-					state: {
-						url: `https://newsapi.org/v2/everything?sources=al-jazeera-english&apiKey=${
-							process.env.API_KEY
-						}`,
-						category: "Aljazeera News",
-					},
-				}}
-			>
+			<StyledLink to="/source/al-jazeera-english">
 				<Img src={Aljazeera} alt="Aljazeera-News Logo" />
 			</StyledLink>
-			{/* http://newsapi.org/v2/everything?domains=euronews.com&language=en&apiKey=${process.env.API_KEY} */}
-			<StyledLink
-				to={{
-					pathname: "/viewmore",
-					state: {
-						url: `https://newsapi.org/v2/everything?domains=euronews.com&language=en&apiKey=${
-							process.env.API_KEY
-						}`,
-						category: "Euro News",
-					},
-				}}
-			>
+			<StyledLink to="/domain/euronews.com">
 				<Img src={EuroNews} alt="Euro-News Logo" />
 			</StyledLink>
-			{/* http://newsapi.org/v2/everything?sources=nbc-news&apiKey=${process.env.API_KEY} */}
-			<StyledLink
-				to={{
-					pathname: "/viewmore",
-					state: {
-						url: `https://newsapi.org/v2/everything?sources=nbc-news&apiKey=${
-							process.env.API_KEY
-						}`,
-						category: "NBC News",
-					},
-				}}
-			>
+			<StyledLink to="/source/nbc-news">
 				<Img src={NBCNews} alt="NBC-News Logo" />
 			</StyledLink>
-			{/* http://newsapi.org/v2/everything?domains=ndtv.com&apiKey=${process.env.API_KEY} */}
-			<StyledLink
-				to={{
-					pathname: "/viewmore",
-					state: {
-						url: `https://newsapi.org/v2/everything?domains=ndtv.com&apiKey=${
-							process.env.API_KEY
-						}`,
-						category: "NDTV News",
-					},
-				}}
-			>
+			<StyledLink to="/domain/ndtv.com">
 				<Img src={NDTVNews} alt="NDTV-News Logo" />
 			</StyledLink>
 		</Section>

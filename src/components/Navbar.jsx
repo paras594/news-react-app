@@ -47,17 +47,13 @@ const Navbar = () => {
 	const [value, setValue] = useState("");
 	const history = useHistory();
 
-	useEffect(() => {
-		console.log(history);
-	}, []);
-
 	function handleInputChange(e) {
 		setValue(e.target.value);
 	}
 
 	function handleFormSubmit(e) {
 		e.preventDefault();
-		history.push("/viewmore", {
+		history.push(`/search-results/${value}`, {
 			url: `https://newsapi.org/v2/everything?qInTitle=${value}&apiKey=${
 				process.env.API_KEY
 			}`,

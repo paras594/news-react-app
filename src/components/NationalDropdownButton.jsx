@@ -115,15 +115,7 @@ const NationalDropdownButton = () => {
 				{newsCountries.map(country => (
 					<li key={uuid()}>
 						<Link
-							to={{
-								pathname: "/viewmore",
-								state: {
-									url: `http://newsapi.org/v2/top-headlines?country=${
-										country.countryCode
-									}&apiKey=${process.env.API_KEY}`,
-									category: `${country.countryName} Top Headlines`,
-								},
-							}}
+							to={`/country/${country.countryCode}`}
 							onClick={() => closeDropdown()}
 						>
 							{country.countryName}

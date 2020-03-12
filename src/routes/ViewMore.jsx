@@ -1,5 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import {
+	useLocation,
+	Link,
+	useHistory,
+	useParams,
+	Redirect,
+} from "react-router-dom";
 import styled from "styled-components";
 import Aside from "../components/Aside/Aside";
 import ViewMoreContent from "../components/ViewMoreContent";
@@ -8,6 +14,8 @@ import axios from "axios";
 import { H1 } from "../styles/Headings";
 import Loader from "../components/Loader";
 import { fadeInItem, fadeOutItem } from "../styles/animations";
+import allCategoriesMap from "../utility/allCategoriesMap";
+import { capitalize } from "../utility/helper";
 
 const FlexContainer = styled.section`
 	display: flex;
@@ -50,70 +58,70 @@ const LoaderContainer = styled.div`
 `;
 
 const ViewMore = () => {
+	const urls = allCategoriesMap;
+
 	const [totalData, setTotalData] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [viewMoreData, setViewMoreData] = useState([]);
-	const [noDataFound, setNoDataFound] = useState(false);
+	const [asideData, setAsideData] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [hasError, setHasError] = useState(false);
 	const location = useLocation();
-	const { url, category } = location.state;
-	const pageSize = 10;
-	const maxDataLimit = 100;
+	const history = useHistory();
+	const params = useParams();
+	const { category, page } = params;
+	const pageSize = 100;
+
+	async function getData() {
+		setIsLoading(true);
+		try {
+			const [categoryRes, asideRes] = await axios.all([
+				axios.get(urls[capitalize(category)], { params: { pageSize } }),
+				axios.get(urls["Featured"], { params: { pageSize: 3 } }),
+			]);
+
+			const { totalResults, articles } = categoryRes.data;
+			setTotalData(totalResults);
+			setViewMoreData(articles);
+			setAsideData(asideRes.data);
+			setIsLoading(false);
+		} catch (err) {
+			setIsLoading(false);
+			setHasError(true);
+		}
+	}
 
 	useEffect(() => {
-		setIsLoading(true);
-		axios
-			.get(url, {
-				params: {
-					page: currentPage,
-					pageSize,
-				},
-			})
-			.then(res => {
-				let { articles, totalResults } = res.data;
-				if (!articles.length) {
-					setIsLoading(false);
-					setNoDataFound(true);
-				} else {
-					setTotalData(totalResults);
-					setViewMoreData(articles);
-					setIsLoading(false);
-				}
-			})
-			.catch(err => {
-				console.log(err.response.data);
-				setIsLoading(false);
-			});
-	}, [currentPage, url]);
+		getData();
+	}, [currentPage]);
+
+	if (hasError) return <Redirect to="/calls-finished" />;
+	if (isLoading || asideData.length < 1 || viewMoreData.length < 1)
+		return <h1>Loading...</h1>;
 
 	return (
-		<>
-			<A to="/">
-				<i className="fas fa-angle-left" /> Go to Home
-			</A>
-			<H1>{category}</H1>
-			<FlexContainer>
-				{noDataFound ? (
-					<h1>No Data Found</h1>
-				) : isLoading ? (
-					<LoaderContainer>
-						<Loader />
-					</LoaderContainer>
-				) : (
+		<div>
+			<>
+				<A to="/">
+					<i className="fas fa-angle-left" /> Go to Home
+				</A>
+				<H1>{category}</H1>
+				<FlexContainer>
 					<Main>
 						<ViewMoreContent viewMoreData={viewMoreData} />
-						<Pagination
-							totalData={Math.min(totalData, maxDataLimit)}
-							perPage={pageSize}
-							currentPage={currentPage}
-							buttons={5}
-							setCurrentPage={setCurrentPage}
-						/>
+						{/* <Pagination */}
+						{/* 	totalData={Math.min(totalData, maxDataLimit)} */}
+						{/* 	perPage={pageSize} */}
+						{/* 	currentPage={currentPage} */}
+						{/* 	buttons={5} */}
+						{/* 	setCurrentPage={setCurrentPage} */}
+						{/* /> */}
 					</Main>
-				)}
-				<Aside />
-			</FlexContainer>
-		</>
+
+					<Aside data={asideData} />
+				</FlexContainer>
+			</>
+		</div>
 	);
 };
 

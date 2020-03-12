@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { truncate } from "../utility/helper";
-import noImgPlaceholder from "../images/no-img-available.jpg";
-import A from "../styles/A";
 import { H1, H3 } from "../styles/Headings";
-import P from "../styles/P";
-import Loader from "./Loader";
-import { fadeInItem, fadeOutItem } from "../styles/animations";
+import { fadeInItem } from "../styles/animations";
+import moment from "moment";
 
 const Header = styled.header`
 	animation: 1s ${fadeInItem};
@@ -60,7 +56,7 @@ const Description = styled.div`
 	flex-direction: column;
 	justify-content: flex-end;
 	padding: 1rem;
-	background: rgb(0, 0, 0);
+	background: rgba(0, 0, 0, 0.4);
 	background: linear-gradient(
 		0deg,
 		rgba(0, 0, 0, 0.7) 0%,
@@ -68,6 +64,12 @@ const Description = styled.div`
 		rgba(0, 0, 0, 0.3) 70%,
 		rgba(0, 0, 0, 0) 100%
 	);
+
+	p {
+		font-size: 0.8rem;
+		font-weight: 500;
+		color: rgba(255, 255, 255, 0.8);
+	}
 `;
 
 const MainTitle = styled(H1)`
@@ -75,126 +77,84 @@ const MainTitle = styled(H1)`
 `;
 
 const Title = styled(H3)`
-	margin-bottom: 0.4rem;
+	margin-bottom: 0.5rem;
 `;
 
-const LoaderContainer = styled.div`
-	height: 25rem;
-	border: 1px solid rgba(0, 0, 0, 0.2);
+const Button = styled.button`
+	border: none;
+	background: #eee;
 	border-radius: 1rem;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	animation: 1s ${fadeOutItem};
+	padding: ${props => (props.small ? "0.4rem .8rem" : "0.5rem 1rem")};
+	font-size: 0.75rem;
+	font-weight: 500;
+	cursor: pointer;
+	align-self: flex-start;
+	margin-right: 0.8rem;
 `;
 
-const HeaderGrid = () => {
-	const [gridData, setGridData] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
+const Div = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+`;
 
-	useEffect(() => {
-		let url = `https://newsapi.org/v2/top-headlines?sources=bbc-news&pageSize=3&apiKey=${
-			process.env.API_KEY
-		}`;
+const A = styled.a`
+	display: block;
+	color: inherit;
+	text-decoration: none;
 
-		setIsLoading(true);
+	&:hover {
+		text-decoration: underline;
+	}
+`;
 
-		axios
-			.get(url)
-			.then(res => {
-				let { articles } = res.data;
-
-				articles.forEach(article => {
-					if (!article.urlToImage) {
-						article.urlToImage = noImgPlaceholder;
-					}
-
-					if (!article.author) {
-						article.author = "Headlines";
-					}
-
-					if (!article.description) {
-						article.description = "No description available for this.";
-					}
-				});
-
-				setGridData(articles);
-				setIsLoading(false);
-			})
-			.catch(err => {
-				console.log(err.response.data);
-				setIsLoading(false);
-			});
-	}, []);
-
-	return gridData.length < 1 || isLoading ? (
-		<LoaderContainer>
-			<Loader />
-		</LoaderContainer>
-	) : (
+const HeaderGrid = ({ data }) => {
+	const articles = data.articles;
+	console.log(articles);
+	console.log(moment(articles[0].publishedAt).fromNow());
+	return (
 		<Header>
 			<Grid>
 				<GridItem className="first">
-					<img src={gridData[0].urlToImage} alt={gridData[0].author} />
+					<img src={articles[0].urlToImage} alt={articles[0].author} />
 					<Description>
 						<MainTitle color="#fff">
-							<A
-								to={{
-									pathname: "/news-content",
-									state: { article: gridData[0] },
-								}}
-							>
-								{truncate(gridData[0].title, 100)}
+							<A href={articles[0].url} target="_blank">
+								{truncate(articles[0].title, 100)}
 							</A>
 						</MainTitle>
-						<P weight="500" color="rgba(255, 255, 255, 0.9)">
-							{truncate(gridData[0].description, 180)}
-						</P>
+						<Div>
+							<Button>{articles[0].source.name}</Button>
+							<p>{moment(articles[0].publishedAt).fromNow()}</p>
+						</Div>
 					</Description>
 				</GridItem>
 				<GridItem className="second">
-					<img src={gridData[1].urlToImage} alt={gridData[1].author} />
+					<img src={articles[1].urlToImage} alt={articles[1].author} />
 					<Description>
 						<Title color="#fff">
-							<A
-								to={{
-									pathname: "/news-content",
-									state: { article: gridData[1] },
-								}}
-							>
-								{truncate(gridData[1].title, 100)}
+							<A href={articles[1].url} target="_blank">
+								{truncate(articles[1].title, 100)}
 							</A>
 						</Title>
-						<P
-							weight="500"
-							color="rgba(255, 255, 255, 0.85)"
-							size="0.8rem"
-						>
-							{truncate(gridData[1].description, 100)}
-						</P>
+						<Div>
+							<Button small>{articles[1].source.name}</Button>
+							<p>{moment(articles[1].publishedAt).fromNow()}</p>
+						</Div>
 					</Description>
 				</GridItem>
 				<GridItem className="third">
-					<img src={gridData[2].urlToImage} alt={gridData[2].author} />
+					<img src={articles[2].urlToImage} alt={articles[2].author} />
 					<Description pSize=".8rem">
 						<Title color="#fff">
-							<A
-								to={{
-									pathname: "/news-content",
-									state: { article: gridData[2] },
-								}}
-							>
-								{truncate(gridData[2].title, 100)}
+							<A href={articles[2].url} target="_blank">
+								{truncate(articles[2].title, 100)}
 							</A>
 						</Title>
-						<P
-							weight="500"
-							color="rgba(255, 255, 255, 0.85)"
-							size="0.8rem"
-						>
-							{truncate(gridData[2].description, 100)}
-						</P>
+						<Div>
+							<Button small>{articles[2].source.name}</Button>
+							<p>{moment(articles[2].publishedAt).fromNow()}</p>
+						</Div>
 					</Description>
 				</GridItem>
 			</Grid>
