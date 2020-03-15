@@ -10,7 +10,7 @@ const Title = styled.h2`
 
 const BrandName = () => {
 	return (
-		<SLink>
+		<SLink to="/">
 			<Title>The News Station</Title>
 		</SLink>
 	);
