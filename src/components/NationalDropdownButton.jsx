@@ -1,42 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import newsCountries from "../utility/newsCountries";
 import { v4 as uuid } from "uuid";
+import Button from "../styles/Button";
+import Icon from "../styles/Icon";
+import SLink from "../styles/SLink";
+import { clrBlue } from "../styles/Variables";
 
 const Div = styled.div`
 	position: relative;
 	display: inline-block;
 	height: 100%;
-`;
-
-const Button = styled.button`
-	font-weight: 500;
-	color: rgba(0, 0, 0, 0.8);
-	font-size: 0.9rem;
-	border: none;
-	border-radius: 2rem;
-	cursor: pointer;
-	background: transparent;
-	display: flex;
-	align-items: center;
-	font-family: "Quicksand", sans-serif;
-	height: 100%;
-	padding: 0 1rem;
-	outline: none;
-	transition: background 0.25s ease-in-out;
-
-	&::-moz-focus-inner {
-		border: 0;
-	}
-
-	&:hover {
-		background: #ccc;
-	}
-
-	i {
-		margin-left: 0.4rem;
-	}
 `;
 
 const Dropdown = styled.ul`
@@ -53,23 +27,18 @@ const Dropdown = styled.ul`
 	opacity: ${props => props.opacity};
 	display: ${props => props.display};
 	z-index: 99;
-	box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.25);
 	border-top-left-radius: 0.5rem;
 	border-bottom-left-radius: 0.5rem;
 
 	li {
 		padding: 0.5rem 1rem;
 		color: rgba(0, 0, 0, 0.8);
-		transition: background 0.25s ease;
-		&:hover {
-			background: #ccc;
-		}
+		transition: background 0.15s ease, color 0.1s ease;
 
-		a {
-			text-decoration: none;
-			font-size: 1rem;
-			color: inherit;
-			display: block;
+		&:hover {
+			background: ${clrBlue};
+			color: #fff;
 		}
 	}
 `;
@@ -108,18 +77,19 @@ const NationalDropdownButton = () => {
 
 	return (
 		<Div>
-			<Button onClick={handleClick}>
-				National <i className="fas fa-angle-down" />
+			<Button height="100%" onClick={handleClick}>
+				National <Icon mleft=".5rem" className="fas fa-angle-down" />
 			</Button>
 			<Dropdown opacity={opacity} display={display} height={height}>
 				{newsCountries.map(country => (
 					<li key={uuid()}>
-						<Link
+						<SLink
+							display="block"
 							to={`/country/${country.countryCode}`}
 							onClick={() => closeDropdown()}
 						>
 							{country.countryName}
-						</Link>
+						</SLink>
 					</li>
 				))}
 			</Dropdown>

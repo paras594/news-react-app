@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
-const A = styled(Link)`
-	text-decoration: none;
-	color: inherit;
+const A = styled.a`
 	display: block;
+	color: inherit;
+	text-decoration: none;
+	font-family: inherit;
 
 	&:hover {
 		text-decoration: underline;

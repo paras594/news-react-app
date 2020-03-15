@@ -1,20 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { truncate } from "../utility/helper";
 import noImgPlaceholder from "../images/no-img-available.jpg";
-import { H4 } from "../styles/Headings";
+import { H5 } from "../styles/Typography";
 import moment from "moment";
-
-const A = styled.a`
-	display: block;
-	color: inherit;
-	text-decoration: none;
-
-	&:hover {
-		text-decoration: underline;
-	}
-`;
+import A from "../styles/Anchor";
+import Button from "../styles/Button";
+import SLink from "../styles/SLink";
 
 const Item = styled.div`
 	display: grid;
@@ -50,26 +42,14 @@ const Content = styled.div`
 	justify-content: space-between;
 `;
 
-const Title = styled(H4)`
+const Title = styled(H5)`
 	margin-bottom: 1rem;
-`;
-
-const Button = styled.button`
-	border: none;
-	background: #eee;
-	border-radius: 1rem;
-	padding: ${props => (props.small ? "0.4rem .8rem" : "0.5rem 1rem")};
-	font-size: 0.75rem;
-	font-weight: 500;
-	cursor: pointer;
-	align-self: flex-start;
-	margin-right: 0.8rem;
 `;
 
 const Div = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: space-between;
 
 	p {
 		font-size: 0.8rem;
@@ -111,9 +91,9 @@ const NewsItem = ({ article }) => {
 					</A>
 				</Title>
 				<Div>
-					<Link to={route}>
-						<Button>{article.source.name}</Button>
-					</Link>
+					<SLink to={route}>
+						<Button small>{article.source.name}</Button>
+					</SLink>
 					<p>{moment(article.publishedAt).fromNow()}</p>
 				</Div>
 			</Content>

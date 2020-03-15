@@ -3,23 +3,22 @@ import { useParams, Redirect } from "react-router-dom";
 import axios from "axios";
 import ArticlesAsideContainer from "../components/ArticlesAsideContainer";
 
-const DomainNews = () => {
+const SearchNews = () => {
 	const [totalData, setTotalData] = useState(0);
-	const [domainData, setDomainData] = useState([]);
+	const [searchData, setSearchData] = useState([]);
 	const [asideData, setAsideData] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [hasError, setHasError] = useState(false);
 	const params = useParams();
-	const { domain } = params;
+	const { query } = params;
 	const pageSize = 100;
-	console.log(params);
 
 	async function getData() {
 		setIsLoading(true);
 		try {
-			const [domainRes, asideRes] = await axios.all([
+			const [searchRes, asideRes] = await axios.all([
 				axios.get(
-					`https://newsapi.org/v2/everything?domains=${domain}&apiKey=${
+					`https://newsapi.org/v2/everything?qInTitle=${query}&apiKey=${
 						process.env.API_KEY
 					}`,
 					{ params: { pageSize } }
@@ -32,10 +31,10 @@ const DomainNews = () => {
 				),
 			]);
 
-			const { totalResults, articles } = domainRes.data;
+			const { totalResults, articles } = searchRes.data;
 
 			setTotalData(totalResults);
-			setDomainData(articles);
+			setSearchData(articles);
 			setAsideData(asideRes.data);
 			setIsLoading(false);
 		} catch (err) {
@@ -47,20 +46,20 @@ const DomainNews = () => {
 
 	useEffect(() => {
 		getData();
-	}, [domain]);
+	}, [query]);
 
 	if (hasError) return <Redirect to="/calls-finished" />;
-	if (isLoading || asideData.length < 1 || domainData.length < 1)
+	if (isLoading || asideData.length < 1 || searchData.length < 1)
 		return <h1>Loading...</h1>;
 
 	return (
 		<ArticlesAsideContainer
 			totalData={totalData}
-			title={domain}
-			articlesData={domainData}
+			title="Search Results"
+			articlesData={searchData}
 			asideData={asideData}
 		/>
 	);
 };
 
-export default DomainNews;
+export default SearchNews;

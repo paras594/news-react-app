@@ -1,3 +1,6 @@
 const FontQuickSand = `"Quicksand", sans-serif`;
 
-export { FontQuickSand };
+const clrBlue = "#4169E1";
+const clrLightGrey = "#eeeeee";
+
+export { FontQuickSand, clrBlue, clrLightGrey };

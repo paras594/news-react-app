@@ -29,6 +29,11 @@ const StyledLink = styled(Link)`
 	border-radius: 50%;
 	overflow: hidden;
 	border: 1px solid rgba(0, 0, 0, 0.3);
+	transition: box-shadow 0.2s ease;
+
+	&:hover {
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+	}
 `;
 
 const Img = styled.img`

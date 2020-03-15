@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import SLink from "../styles/SLink";
 
 const Title = styled.h2`
 	font-size: 1.3rem;
@@ -8,7 +9,11 @@ const Title = styled.h2`
 `;
 
 const BrandName = () => {
-	return <Title>The News Station</Title>;
+	return (
+		<SLink>
+			<Title>The News Station</Title>
+		</SLink>
+	);
 };
 
 export default BrandName;

@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-
 import { v4 as uuid } from "uuid";
 import NewsItem from "../NewsItem";
-import { H1 } from "../../styles/Headings";
+import { H1 } from "../../styles/Typography";
+import SLink from "../../styles/SLink";
+import Button from "../../styles/Button";
 
 import { fadeInItem } from "../../styles/animations";
 
@@ -15,17 +15,6 @@ const Section = styled.section`
 	a {
 		text-decoration: none;
 	}
-`;
-
-const Button = styled.button`
-	border: none;
-	background: #eee;
-	border-radius: 1rem;
-	padding: 0.5rem 1.2rem;
-	font-size: 0.8rem;
-	font-weight: 400;
-	margin-left: 0.5rem;
-	cursor: pointer;
 `;
 
 const Container = styled.div`
@@ -48,9 +37,9 @@ const NewsSections = ({ category, data }) => {
 						<NewsItem key={uuid()} article={article} />
 					))}
 				</div>
-				<Link to={`viewmore/${category}`}>
+				<SLink to={`/category/${category}`}>
 					<Button>View More</Button>
-				</Link>
+				</SLink>
 			</Container>
 		</Section>
 	);

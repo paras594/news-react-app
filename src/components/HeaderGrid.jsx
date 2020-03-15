@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { truncate } from "../utility/helper";
-import { H1, H3 } from "../styles/Headings";
+import { H1, H4 } from "../styles/Typography";
 import { fadeInItem } from "../styles/animations";
 import moment from "moment";
+import A from "../styles/Anchor";
+import SLink from "../styles/SLink";
+import Button from "../styles/Button";
 
 const Header = styled.header`
 	animation: 1s ${fadeInItem};
@@ -76,36 +79,14 @@ const MainTitle = styled(H1)`
 	margin-bottom: 0.4rem;
 `;
 
-const Title = styled(H3)`
+const Title = styled(H4)`
 	margin-bottom: 0.5rem;
-`;
-
-const Button = styled.button`
-	border: none;
-	background: #eee;
-	border-radius: 1rem;
-	padding: ${props => (props.small ? "0.4rem .8rem" : "0.5rem 1rem")};
-	font-size: 0.75rem;
-	font-weight: 500;
-	cursor: pointer;
-	align-self: flex-start;
-	margin-right: 0.8rem;
 `;
 
 const Div = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-`;
-
-const A = styled.a`
-	display: block;
-	color: inherit;
-	text-decoration: none;
-
-	&:hover {
-		text-decoration: underline;
-	}
 `;
 
 const HeaderGrid = ({ data }) => {
@@ -124,7 +105,12 @@ const HeaderGrid = ({ data }) => {
 							</A>
 						</MainTitle>
 						<Div>
-							<Button>{articles[0].source.name}</Button>
+							<SLink
+								mright="1rem"
+								to={`/source/${articles[0].source.id}`}
+							>
+								<Button small>{articles[0].source.name}</Button>
+							</SLink>
 							<p>{moment(articles[0].publishedAt).fromNow()}</p>
 						</Div>
 					</Description>
@@ -138,7 +124,12 @@ const HeaderGrid = ({ data }) => {
 							</A>
 						</Title>
 						<Div>
-							<Button small>{articles[1].source.name}</Button>
+							<SLink
+								mright="1rem"
+								to={`/source/${articles[1].source.id}`}
+							>
+								<Button small>{articles[1].source.name}</Button>
+							</SLink>
 							<p>{moment(articles[1].publishedAt).fromNow()}</p>
 						</Div>
 					</Description>
@@ -152,7 +143,12 @@ const HeaderGrid = ({ data }) => {
 							</A>
 						</Title>
 						<Div>
-							<Button small>{articles[2].source.name}</Button>
+							<SLink
+								mright="1rem"
+								to={`/source/${articles[2].source.id}`}
+							>
+								<Button small>{articles[2].source.name}</Button>
+							</SLink>
 							<p>{moment(articles[2].publishedAt).fromNow()}</p>
 						</Div>
 					</Description>

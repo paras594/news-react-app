@@ -1,45 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Redirect } from "react-router-dom";
 import axios from "axios";
+import allCategoriesMap from "../utility/allCategoriesMap";
+import { capitalize } from "../utility/helper";
 import ArticlesAsideContainer from "../components/ArticlesAsideContainer";
 
-const DomainNews = () => {
+const CategoryNews = () => {
+	console.log("running");
+	const urls = allCategoriesMap;
+
 	const [totalData, setTotalData] = useState(0);
-	const [domainData, setDomainData] = useState([]);
+	const [categoryData, setCategoryData] = useState([]);
 	const [asideData, setAsideData] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [hasError, setHasError] = useState(false);
 	const params = useParams();
-	const { domain } = params;
+	const { category, page } = params;
 	const pageSize = 100;
-	console.log(params);
 
 	async function getData() {
 		setIsLoading(true);
 		try {
-			const [domainRes, asideRes] = await axios.all([
-				axios.get(
-					`https://newsapi.org/v2/everything?domains=${domain}&apiKey=${
-						process.env.API_KEY
-					}`,
-					{ params: { pageSize } }
-				),
-				axios.get(
-					`https://newsapi.org/v2/everything?sources=entertainment-weekly&apiKey=${
-						process.env.API_KEY
-					}`,
-					{ params: { pageSize: 3 } }
-				),
+			const [categoryRes, asideRes] = await axios.all([
+				axios.get(urls[capitalize(category)], { params: { pageSize } }),
+				axios.get(urls["Featured"], { params: { pageSize: 3 } }),
 			]);
 
-			const { totalResults, articles } = domainRes.data;
-
+			const { totalResults, articles } = categoryRes.data;
 			setTotalData(totalResults);
-			setDomainData(articles);
+			setCategoryData(articles);
 			setAsideData(asideRes.data);
 			setIsLoading(false);
 		} catch (err) {
-			console.log(err);
 			setIsLoading(false);
 			setHasError(true);
 		}
@@ -47,20 +39,20 @@ const DomainNews = () => {
 
 	useEffect(() => {
 		getData();
-	}, [domain]);
+	}, [category]);
 
 	if (hasError) return <Redirect to="/calls-finished" />;
-	if (isLoading || asideData.length < 1 || domainData.length < 1)
+	if (isLoading || asideData.length < 1 || categoryData.length < 1)
 		return <h1>Loading...</h1>;
 
 	return (
 		<ArticlesAsideContainer
 			totalData={totalData}
-			title={domain}
-			articlesData={domainData}
+			title={category}
+			articlesData={categoryData}
 			asideData={asideData}
 		/>
 	);
 };
 
-export default DomainNews;
+export default CategoryNews;

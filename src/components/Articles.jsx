@@ -9,19 +9,19 @@ const Section = styled.section`
 	flex-direction: column;
 `;
 
-const ViewMoreContent = ({ viewMoreData }) => {
+const Articles = ({ data }) => {
 	useEffect(() => {
 		document.body.scrollTop = 0;
 		document.documentElement.scrollTop = 0;
-	}, [viewMoreData]);
+	}, [data]);
 
 	return (
 		<Section>
-			{viewMoreData.map(article => (
+			{data.map(article => (
 				<NewsItem key={uuid()} article={article} />
 			))}
 		</Section>
 	);
 };
 
-export default ViewMoreContent;
+export default Articles;

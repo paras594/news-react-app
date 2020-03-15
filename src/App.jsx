@@ -5,12 +5,12 @@ import Container from "./styles/Container";
 import Navbar from "./components/Navbar";
 import TopicsNav from "./components/TopicsNav";
 import Homepage from "./routes/Homepage";
-import ViewMore from "./routes/ViewMore";
+import CategoryNews from "./routes/CategoryNews";
 import NewsPage from "./routes/NewsPage";
 import SourceNews from "./routes/SourceNews";
 import DomainNews from "./routes/DomainNews";
 import CountryNews from "./routes/CountryNews";
-import SearchResults from "./routes/SearchResults";
+import SearchNews from "./routes/SearchNews";
 import CallFinishedErrorPage from "./routes/CallsFinishedErrorPage";
 
 const App = () => {
@@ -21,12 +21,12 @@ const App = () => {
 				<TopicsNav />
 				<Switch>
 					<Route exact path="/" component={Homepage} />
-					<Route path="/viewmore/:category" component={ViewMore} />
+					<Route path="/category/:category" component={CategoryNews} />
 					<Route path="/news-content" component={NewsPage} />
 					<Route path="/source/:source" component={SourceNews} />
 					<Route path="/domain/:domain" component={DomainNews} />
 					<Route path="/country/:countryCode" component={CountryNews} />
-					<Route path="/search-results/:query" component={SearchResults} />
+					<Route path="/search-results/:query" component={SearchNews} />
 					<Route
 						path="/calls-finished"
 						component={CallFinishedErrorPage}

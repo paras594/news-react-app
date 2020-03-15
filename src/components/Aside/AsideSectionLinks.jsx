@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { H3 } from "../../styles/Headings";
+import { H3 } from "../../styles/Typography";
 import newsCategories from "../../utility/newsCategories";
 import { v4 as uuid } from "uuid";
+import Button from "../../styles/Button";
+import Icon from "../../styles/Icon";
 
 const Div = styled.div`
 	border-radius: 1rem;
@@ -19,29 +21,17 @@ const Buttons = styled.div`
 	flex-direction: column;
 	margin-top: 0.6rem;
 	align-items: flex-start;
+`;
 
-	button {
-		border: none;
-		background: transparent;
-		font-size: 1rem;
-		margin-bottom: 0.6rem;
-		padding: 0.4rem 0.8rem;
-		border-radius: 2rem;
-		cursor: pointer;
-		color: rgba(0, 0, 0, 0.8);
-		transition: background 0.25s ease;
-		outline: none;
+const Flex = styled.div`
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.5rem;
+`;
 
-		i {
-			font-size: 0.9rem;
-			margin-right: 0.2rem;
-			color: rgba(0, 0, 0, 0.6);
-		}
-
-		&:hover {
-			background: #ccc;
-		}
-	}
+const Title = styled(H3)`
+	margin-bottom: 1rem;
+	margin-top: 0.3rem;
 `;
 
 const AsideSectionLinks = () => {
@@ -54,12 +44,20 @@ const AsideSectionLinks = () => {
 
 	return (
 		<Div>
-			<H3>Jump To Section</H3>
+			<Title>Jump To Section</Title>
 			<Buttons>
 				{newsCategories.map(item => (
-					<button key={uuid()} onClick={() => handleClick(item.category)}>
-						<i className="fas fa-link" /> {item.category}
-					</button>
+					<Flex>
+						<Icon className="fas fa-link" mright=".8rem" />{" "}
+						<Button
+							fontSize="1rem"
+							key={uuid()}
+							small
+							onClick={() => handleClick(item.category)}
+						>
+							{item.category}
+						</Button>
+					</Flex>
 				))}
 			</Buttons>
 		</Div>

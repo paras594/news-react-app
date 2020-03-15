@@ -10,7 +10,6 @@ const AsideContainer = styled.div`
 `;
 
 const Aside = ({ data }) => {
-	console.log("aside data:", data);
 	return (
 		<AsideContainer>
 			<AsideFeaturedNews data={data} />

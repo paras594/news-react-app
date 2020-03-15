@@ -1,10 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import TrendingItem from "./TrendingItem";
 import { v4 as uuid } from "uuid";
-import { H1 } from "../../styles/Headings";
+import { H1 } from "../../styles/Typography";
 import { fadeInItem } from "../../styles/animations";
+import SLink from "../../styles/SLink";
+import Button from "../../styles/Button";
 
 const Section = styled.section`
 	margin-top: 4.2rem;
@@ -14,6 +15,7 @@ const Section = styled.section`
 const Header = styled.div`
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 
 	h2 {
 		font-size: 2rem;
@@ -29,17 +31,6 @@ const Items = styled.div`
 	animation: 1s ${fadeInItem};
 `;
 
-const Button = styled.button`
-	border: none;
-	background: #eee;
-	border-radius: 1rem;
-	padding: 0.5rem 1.2rem;
-	font-size: 0.8rem;
-	font-weight: 400;
-	margin-left: 0.5rem;
-	cursor: pointer;
-`;
-
 const TrendingSection = ({ data }) => {
 	const { articles } = data;
 
@@ -47,9 +38,9 @@ const TrendingSection = ({ data }) => {
 		<Section>
 			<Header>
 				<H1>Trending</H1>
-				<Link to="/viewmore/Trending">
+				<SLink to="/category/Trending">
 					<Button>View More</Button>
-				</Link>
+				</SLink>
 			</Header>
 			<Items>
 				{articles.map(article => (

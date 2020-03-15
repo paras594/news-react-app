@@ -2,18 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { truncate } from "../../utility/helper";
 import noImgPlaceholder from "../../images/no-img-available.jpg";
-import { H4 } from "../../styles/Headings";
+import { H5 } from "../../styles/Typography";
 import moment from "moment";
-
-const A = styled.a`
-	display: block;
-	color: inherit;
-	text-decoration: none;
-
-	&:hover {
-		text-decoration: underline;
-	}
-`;
+import A from "../../styles/Anchor";
+import SLink from "../../styles/SLink";
+import Button from "../../styles/Button";
 
 const Item = styled.div`
 	border: 1px solid rgba(0, 0, 0, 0.2);
@@ -38,26 +31,14 @@ const Description = styled.div`
 	flex: 1;
 `;
 
-const Title = styled(H4)`
+const Title = styled(H5)`
 	margin-bottom: 0.8rem;
-`;
-
-const Button = styled.button`
-	border: none;
-	background: #eee;
-	border-radius: 1rem;
-	padding: ${props => (props.small ? "0.4rem .8rem" : "0.5rem 1rem")};
-	font-size: 0.75rem;
-	font-weight: 500;
-	cursor: pointer;
-	align-self: flex-start;
-	margin-right: 0.8rem;
 `;
 
 const Div = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: space-between;
 	margin-bottom: 0.4rem;
 
 	p {
@@ -86,7 +67,9 @@ const TrendingItem = ({ article }) => {
 					</A>
 				</Title>
 				<Div>
-					<Button small>{article.source.name}</Button>
+					<SLink to={`/source/${article.source.id}`}>
+						<Button small>{article.source.name}</Button>
+					</SLink>
 					<p>{moment(article.publishedAt).fromNow()}</p>
 				</Div>
 			</Description>
