@@ -97,7 +97,7 @@ const Pagination = ({
 
 			setPages(arr);
 		}
-	}, [totalPages]);
+	}, [totalPages, currentPage]);
 
 	const handlePrevClick = useCallback(() => {
 		setCurrentPage(currentPage - 1);
