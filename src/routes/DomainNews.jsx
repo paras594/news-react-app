@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ArticlesAsideContainer from "../components/ArticlesAsideContainer";
 import fetchArticlesData from "../redux/actions/fetchArticlesData";
 import { capitalize } from "../utility/helper";
+import Loader from "../components/Loader";
 
 const DomainNews = () => {
 	const params = useParams();
@@ -29,7 +30,7 @@ const DomainNews = () => {
 
 	if (hasError) return <Redirect to="/calls-finished" />;
 	if (isLoading || featuredData.length < 1 || articlesData.length < 1)
-		return <h1>Loading...</h1>;
+		return <Loader />;
 
 	return (
 		<ArticlesAsideContainer
@@ -37,6 +38,7 @@ const DomainNews = () => {
 			title={capitalize(domain)}
 			articlesData={articlesData}
 			asideData={featuredData}
+			hasError={hasError}
 		/>
 	);
 };

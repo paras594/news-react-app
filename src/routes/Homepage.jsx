@@ -8,6 +8,7 @@ import Sources from "../components/Sources";
 import Main from "../components/Main/Main";
 import Aside from "../components/Aside/Aside";
 import fetchHomepageData from "../redux/actions/fetchHomepageData.js";
+import Loader from "../components/Loader";
 
 const FlexContainer = styled.section`
 	display: flex;
@@ -38,7 +39,7 @@ const Homepage = () => {
 		mainRes.length < 1 ||
 		featuredData.length < 1
 	)
-		return <h1>Loader</h1>;
+		return <Loader />;
 
 	return (
 		<>

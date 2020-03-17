@@ -9,13 +9,16 @@ import SLink from "../styles/SLink";
 import Icon from "../styles/Icon";
 import Button from "../styles/Button";
 
+const Wrapper = styled.div`
+	animation: ${fadeInItem} 1s;
+`;
+
 const FlexContainer = styled.section`
 	display: flex;
 `;
 
 const Main = styled.div`
 	flex: 1;
-	animation: 1s ${fadeInItem};
 `;
 
 const ArticlesAsideContainer = ({
@@ -23,6 +26,7 @@ const ArticlesAsideContainer = ({
 	title,
 	articlesData,
 	asideData,
+	hasError,
 }) => {
 	const [pageData, setPageData] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
@@ -38,28 +42,32 @@ const ArticlesAsideContainer = ({
 	}, [currentPage]);
 
 	return (
-		<>
+		<Wrapper>
 			<SLink mbottom="2rem" to="/">
 				<Button>
 					<Icon mright=".5rem" className="fas fa-angle-left" /> Go to Home
 				</Button>
 			</SLink>
 			<H1>{title}</H1>
-			<FlexContainer>
-				<Main>
-					<Articles data={pageData} />
-					<Pagination
-						totalData={totalData}
-						perPage={pageSize}
-						currentPage={currentPage}
-						buttons={buttons}
-						setCurrentPage={setCurrentPage}
-					/>
-				</Main>
+			{!hasError && totalData === 0 ? (
+				<h1>No Results Found.</h1>
+			) : (
+				<FlexContainer>
+					<Main>
+						<Articles data={pageData} />
+						<Pagination
+							totalData={totalData}
+							perPage={pageSize}
+							currentPage={currentPage}
+							buttons={buttons}
+							setCurrentPage={setCurrentPage}
+						/>
+					</Main>
 
-				<Aside data={asideData} />
-			</FlexContainer>
-		</>
+					<Aside data={asideData} />
+				</FlexContainer>
+			)}
+		</Wrapper>
 	);
 };
 

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import countryCodeMap from "../utility/countryCodeMap";
 import ArticlesAsideContainer from "../components/ArticlesAsideContainer";
 import fetchArticlesData from "../redux/actions/fetchArticlesData";
+import Loader from "../components/Loader";
 
 const CountryNews = () => {
 	const params = useParams();
@@ -28,7 +29,7 @@ const CountryNews = () => {
 
 	if (hasError) return <Redirect to="/calls-finished" />;
 	if (isLoading || featuredData.length < 1 || articlesData.length < 1)
-		return <h1>Loading...</h1>;
+		return <Loader />;
 
 	return (
 		<ArticlesAsideContainer
@@ -36,6 +37,7 @@ const CountryNews = () => {
 			title={`${countryCodeMap[countryCode]} Top Headlines`}
 			articlesData={articlesData}
 			asideData={featuredData}
+			hasError={hasError}
 		/>
 	);
 };

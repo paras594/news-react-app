@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { keyframes } from "styled-components";
+import { fadeOutItem } from "../styles/animations";
+import { clrBlue } from "../styles/Variables";
 
 const rotate = keyframes`
   from {
@@ -43,7 +45,7 @@ const bubbleFour = keyframes`
   100%{ left: 0; }
 `;
 
-const Container = styled.div`
+const Bubbles = styled.div`
 	width: 3rem;
 	height: 3rem;
 	position: relative;
@@ -81,15 +83,38 @@ const BubbleFour = styled(Bubble)`
 	left: 0;
 `;
 
+const LoaderContainer = styled.div`
+	width: 100%;
+	height: 18rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: ${fadeOutItem} 1s;
+`;
+
+const Div = styled.div`
+	width: 4rem;
+	height: 4rem;
+	border: 0.4rem solid;
+	border-color: ${clrBlue} #ddd #ddd #ddd;
+	background: transparent;
+	border-radius: 50%;
+	animation: ${rotate} 1s ease-in-out infinite;
+`;
+
 const Loader = () => {
 	return (
-		<Container>
-			<BubbleOne animation={bubbleOne} />
-			<BubbleTwo animation={bubbleTwo} />
-			<BubbleThree animation={bubbleThree} />
-			<BubbleFour animation={bubbleFour} />
-		</Container>
+		<LoaderContainer>
+			<Div />
+		</LoaderContainer>
 	);
 };
+
+// <Bubbles>
+// 				<BubbleOne animation={bubbleOne} />
+// 				<BubbleTwo animation={bubbleTwo} />
+// 				<BubbleThree animation={bubbleThree} />
+// 				<BubbleFour animation={bubbleFour} />
+// 			</Bubbles>
 
 export default Loader;

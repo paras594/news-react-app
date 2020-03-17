@@ -3,6 +3,7 @@ import { useParams, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ArticlesAsideContainer from "../components/ArticlesAsideContainer";
 import fetchArticlesData from "../redux/actions/fetchArticlesData";
+import Loader from "../components/Loader";
 
 const SourceNews = () => {
 	const params = useParams();
@@ -28,7 +29,7 @@ const SourceNews = () => {
 
 	if (hasError) return <Redirect to="/calls-finished" />;
 	if (isLoading || featuredData.length < 1 || articlesData.length < 1)
-		return <h1>Loading...</h1>;
+		return <Loader />;
 
 	return (
 		<ArticlesAsideContainer
@@ -36,6 +37,7 @@ const SourceNews = () => {
 			title={source}
 			articlesData={articlesData}
 			asideData={featuredData}
+			hasError={hasError}
 		/>
 	);
 };

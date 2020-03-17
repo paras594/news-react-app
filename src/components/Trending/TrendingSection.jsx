@@ -26,7 +26,6 @@ const Items = styled.div`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	column-gap: 1rem;
-	/* border: 1px solid black; */
 	margin: 1rem 0;
 	animation: 1s ${fadeInItem};
 `;

@@ -5,6 +5,7 @@ import ArticlesAsideContainer from "../components/ArticlesAsideContainer";
 import fetchArticlesData from "../redux/actions/fetchArticlesData";
 import allCategoriesMap from "../utility/allCategoriesMap";
 import { capitalize } from "../utility/helper";
+import Loader from "../components/Loader";
 
 const CategoryNews = () => {
 	const params = useParams();
@@ -29,7 +30,7 @@ const CategoryNews = () => {
 
 	if (hasError) return <Redirect to="/calls-finished" />;
 	if (isLoading || featuredData.length < 1 || articlesData.length < 1)
-		return <h1>Loading...</h1>;
+		return <Loader />;
 
 	return (
 		<ArticlesAsideContainer
@@ -37,6 +38,7 @@ const CategoryNews = () => {
 			title={category}
 			articlesData={articlesData}
 			asideData={featuredData}
+			hasError={hasError}
 		/>
 	);
 };
