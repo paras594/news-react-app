@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
+import { clrLightGrey, clrBlue } from "../styles/Variables";
 
 const PaginationContainer = styled.div`
 	display: flex;
@@ -17,7 +18,7 @@ const Button = styled.button`
 	justify-content: center;
 	outline: none;
 	font-size: 1rem;
-	background: #ddd;
+	background: ${clrLightGrey};
 	border: none;
 	cursor: pointer;
 	color: rgba(0, 0, 0, 0.8);
@@ -26,7 +27,7 @@ const Button = styled.button`
 const PageButtons = styled.div`
 	border-radius: 4rem;
 	overflow: hidden;
-	background: #ddd;
+	background: ${clrLightGrey};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -46,10 +47,10 @@ const PageButtons = styled.div`
 		justify-content: center;
 		align-items: center;
 		font-size: 0.8rem;
-		color: rgba(0, 0, 0, 0.8);
+		color: rgba(0, 0, 0, 0.9);
 
 		&.active {
-			background: royalblue;
+			background: ${clrBlue};
 			color: #fff;
 		}
 	}
@@ -96,15 +97,15 @@ const Pagination = ({
 
 			setPages(arr);
 		}
-	}, [currentPage, totalPages]);
+	}, [totalPages]);
 
-	function handlePrevClick() {
+	const handlePrevClick = useCallback(() => {
 		setCurrentPage(currentPage - 1);
-	}
+	}, [currentPage]);
 
-	function handleNextClick() {
+	const handleNextClick = useCallback(() => {
 		setCurrentPage(currentPage + 1);
-	}
+	}, [currentPage]);
 
 	return (
 		<PaginationContainer>

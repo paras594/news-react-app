@@ -91,8 +91,7 @@ const Div = styled.div`
 
 const HeaderGrid = ({ data }) => {
 	const articles = data.articles;
-	console.log(articles);
-	console.log(moment(articles[0].publishedAt).fromNow());
+
 	return (
 		<Header>
 			<Grid>

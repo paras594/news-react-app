@@ -43,13 +43,7 @@ const Navbar = () => {
 
 	function handleFormSubmit(e) {
 		e.preventDefault();
-		history.push(`/search-results/${value}`, {
-			url: `https://newsapi.org/v2/everything?qInTitle=${value}&apiKey=${
-				process.env.API_KEY
-			}`,
-			category: "Search Results",
-		});
-
+		history.push(`/search-results/${value}`);
 		setValue("");
 	}
 

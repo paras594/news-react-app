@@ -1,49 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 import HeaderGrid from "../components/HeaderGrid";
 import TrendingSection from "../components/Trending/TrendingSection";
 import Sources from "../components/Sources";
 import Main from "../components/Main/Main";
 import Aside from "../components/Aside/Aside";
-import getHomepageData from "../utility/getHomepageData";
+import fetchHomepageData from "../redux/actions/fetchHomepageData.js";
 
 const FlexContainer = styled.section`
 	display: flex;
 `;
 
 const Homepage = () => {
-	const [headerData, setHeaderData] = useState([]);
-	const [trendingData, setTrendingData] = useState([]);
-	const [featuredData, setFeaturedData] = useState([]);
-	const [mainRes, setMainRes] = useState([]);
-	const [hasError, setHasError] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
+	const newsState = useSelector(state => state.news);
+	const {
+		isLoading,
+		headerData,
+		trendingData,
+		featuredData,
+		mainRes,
+		hasError,
+	} = newsState;
 
-	async function getData() {
-		setIsLoading(true);
-		try {
-			const {
-				headerRes,
-				trendingRes,
-				featuredRes,
-				mainRes,
-			} = await getHomepageData();
-
-			setHeaderData(headerRes.data);
-			setTrendingData(trendingRes.data);
-			setFeaturedData(featuredRes.data);
-			setMainRes(mainRes);
-			setIsLoading(false);
-		} catch (err) {
-			console.log(err);
-			setIsLoading(false);
-			setHasError(true);
-		}
-	}
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		getData();
+		dispatch(fetchHomepageData());
 	}, []);
 
 	if (hasError) return <Redirect to="/calls-finished" />;

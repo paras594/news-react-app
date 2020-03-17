@@ -47,11 +47,10 @@ const AsideSectionLinks = () => {
 			<Title>Jump To Section</Title>
 			<Buttons>
 				{newsCategories.map(item => (
-					<Flex>
+					<Flex key={uuid()}>
 						<Icon className="fas fa-link" mright=".8rem" />{" "}
 						<Button
 							fontSize="1rem"
-							key={uuid()}
 							small
 							onClick={() => handleClick(item.category)}
 						>

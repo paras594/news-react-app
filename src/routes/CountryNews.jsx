@@ -1,65 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams, Redirect } from "react-router-dom";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import countryCodeMap from "../utility/countryCodeMap";
 import ArticlesAsideContainer from "../components/ArticlesAsideContainer";
+import fetchArticlesData from "../redux/actions/fetchArticlesData";
 
 const CountryNews = () => {
-	const [totalData, setTotalData] = useState(0);
-	const [countryData, setCountryData] = useState([]);
-	const [asideData, setAsideData] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
-	const [hasError, setHasError] = useState(false);
 	const params = useParams();
 	const { countryCode } = params;
 	const pageSize = 100;
-	console.log(params);
-
-	async function getData() {
-		setIsLoading(true);
-		try {
-			const [countryRes, asideRes] = await axios.all([
-				axios.get(
-					`https://newsapi.org/v2/top-headlines?country=${countryCode}&apiKey=${
-						process.env.API_KEY
-					}`,
-					{ params: { pageSize } }
-				),
-				axios.get(
-					`https://newsapi.org/v2/everything?sources=entertainment-weekly&apiKey=${
-						process.env.API_KEY
-					}`,
-					{ params: { pageSize: 3 } }
-				),
-			]);
-
-			const { totalResults, articles } = countryRes.data;
-
-			setTotalData(totalResults);
-			setCountryData(articles);
-			setAsideData(asideRes.data);
-			setIsLoading(false);
-		} catch (err) {
-			console.log(err);
-			setIsLoading(false);
-			setHasError(true);
-		}
-	}
+	const url = `https://newsapi.org/v2/top-headlines?country=${countryCode}&apiKey=${
+		process.env.API_KEY
+	}`;
+	const newsState = useSelector(state => state.news);
+	const {
+		isLoading,
+		articlesData,
+		hasError,
+		featuredData,
+		totalArticles,
+	} = newsState;
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		getData();
+		dispatch(fetchArticlesData(url, pageSize));
 	}, [countryCode]);
 
 	if (hasError) return <Redirect to="/calls-finished" />;
-	if (isLoading || asideData.length < 1 || countryData.length < 1)
+	if (isLoading || featuredData.length < 1 || articlesData.length < 1)
 		return <h1>Loading...</h1>;
 
 	return (
 		<ArticlesAsideContainer
-			totalData={totalData}
+			totalData={totalArticles}
 			title={`${countryCodeMap[countryCode]} Top Headlines`}
-			articlesData={countryData}
-			asideData={asideData}
+			articlesData={articlesData}
+			asideData={featuredData}
 		/>
 	);
 };
