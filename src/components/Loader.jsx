@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { fadeOutItem } from "../styles/animations";
 import { clrBlue } from "../styles/Variables";
@@ -60,7 +60,7 @@ const Bubble = styled.div`
 	height: 1rem;
 	background: rgba(0, 0, 255, 0.4);
 	transform: translate(-50%, -50%);
-	animation: ${props => props.animation} 1.2s infinite ease-in-out;
+	animation: ${props => props.animation} 1.2s infinite;
 `;
 
 const BubbleOne = styled(Bubble)`
@@ -89,7 +89,10 @@ const LoaderContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	animation: ${fadeOutItem} 1s;
+
+	&.fade-out {
+		animation: ${fadeOutItem} 1s ease;
+	}
 `;
 
 const Div = styled.div`
@@ -99,12 +102,20 @@ const Div = styled.div`
 	border-color: ${clrBlue} #ddd #ddd #ddd;
 	background: transparent;
 	border-radius: 50%;
-	animation: ${rotate} 1s ease-in-out infinite;
+	animation: ${rotate} 1s infinite;
 `;
 
 const Loader = () => {
+	const [fadeOut, setFadeOut] = useState(false);
+	useEffect(() => {
+		console.log("mounted loader");
+		return () => {
+			console.log("unmounted loader");
+			setFadeOut(true);
+		};
+	}, []);
 	return (
-		<LoaderContainer>
+		<LoaderContainer className={fadeOut ? "fadeOut" : ""}>
 			<Div />
 		</LoaderContainer>
 	);

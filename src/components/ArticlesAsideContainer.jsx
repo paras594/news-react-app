@@ -10,7 +10,7 @@ import Icon from "../styles/Icon";
 import Button from "../styles/Button";
 
 const Wrapper = styled.div`
-	animation: ${fadeInItem} 1s;
+	animation: ${fadeInItem} 1s ease;
 `;
 
 const FlexContainer = styled.section`
@@ -64,7 +64,7 @@ const ArticlesAsideContainer = ({
 						/>
 					</Main>
 
-					<Aside data={asideData} />
+					<Aside articles={asideData} />
 				</FlexContainer>
 			)}
 		</Wrapper>

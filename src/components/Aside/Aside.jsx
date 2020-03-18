@@ -9,10 +9,10 @@ const AsideContainer = styled.div`
 	width: 20rem;
 `;
 
-const Aside = ({ data }) => {
+const Aside = ({ articles }) => {
 	return (
 		<AsideContainer>
-			<AsideFeaturedNews data={data} />
+			<AsideFeaturedNews articles={articles} />
 			{isHome() ? <AsideSectionLinks /> : ""}
 		</AsideContainer>
 	);

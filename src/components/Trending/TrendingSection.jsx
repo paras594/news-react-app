@@ -27,12 +27,10 @@ const Items = styled.div`
 	grid-template-columns: repeat(4, 1fr);
 	column-gap: 1rem;
 	margin: 1rem 0;
-	animation: 1s ${fadeInItem};
+	animation: 1s ${fadeInItem} ease;
 `;
 
-const TrendingSection = ({ data }) => {
-	const { articles } = data;
-
+const TrendingSection = ({ articles }) => {
 	return (
 		<Section>
 			<Header>

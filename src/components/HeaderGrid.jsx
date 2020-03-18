@@ -9,7 +9,7 @@ import SLink from "../styles/SLink";
 import Button from "../styles/Button";
 
 const Header = styled.header`
-	animation: 1s ${fadeInItem};
+	animation: 1s ${fadeInItem} ease;
 `;
 
 const Grid = styled.div`
@@ -89,9 +89,7 @@ const Div = styled.div`
 	justify-content: flex-start;
 `;
 
-const HeaderGrid = ({ data }) => {
-	const articles = data.articles;
-
+const HeaderGrid = ({ articles }) => {
 	return (
 		<Header>
 			<Grid>

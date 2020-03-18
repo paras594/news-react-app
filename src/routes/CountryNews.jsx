@@ -27,8 +27,8 @@ const CountryNews = () => {
 		dispatch(fetchArticlesData(url, pageSize));
 	}, [countryCode]);
 
-	if (hasError) return <Redirect to="/calls-finished" />;
 	if (isLoading) return <Loader />;
+	if (hasError) return <Redirect to="/calls-finished" />;
 
 	return (
 		<ArticlesAsideContainer

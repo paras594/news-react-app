@@ -20,7 +20,7 @@ const FeaturedNews = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	animation: 1s ${fadeInItem};
+	animation: 1s ${fadeInItem} ease;
 `;
 
 const Title = styled(H3)`
@@ -28,9 +28,7 @@ const Title = styled(H3)`
 	margin-top: 0.3rem;
 `;
 
-const AsideFeaturedNews = ({ data }) => {
-	const { articles } = data;
-
+const AsideFeaturedNews = ({ articles }) => {
 	return (
 		<Div>
 			<Title>Featured News</Title>

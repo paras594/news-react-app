@@ -29,7 +29,6 @@ const newsReducer = (state = initialState, action) => {
 				...state,
 				hasError: true,
 				error: action.payload,
-				isLoading: false,
 			};
 
 		case "SET_HOMEPAGE_DATA":
@@ -39,7 +38,6 @@ const newsReducer = (state = initialState, action) => {
 				trendingData: action.payload.trendingData,
 				featuredData: action.payload.featuredData,
 				mainRes: action.payload.mainRes,
-				isLoading: false,
 			};
 		case "SET_ARTICLES_AND_ASIDE":
 			return {
@@ -47,7 +45,6 @@ const newsReducer = (state = initialState, action) => {
 				totalArticles: action.payload.totalArticles,
 				articlesData: action.payload.articlesData,
 				featuredData: action.payload.asideData,
-				isLoading: false,
 			};
 
 		default:

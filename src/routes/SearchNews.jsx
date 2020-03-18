@@ -27,8 +27,8 @@ const SearchNews = () => {
 		dispatch(fetchArticlesData(url, pageSize));
 	}, [query]);
 
-	if (hasError) return <Redirect to="/calls-finished" />;
 	if (isLoading) return <Loader />;
+	if (hasError) return <Redirect to="/calls-finished" />;
 
 	return (
 		<ArticlesAsideContainer

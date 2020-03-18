@@ -8,7 +8,6 @@ import Sources from "../components/Sources";
 import Main from "../components/Main/Main";
 import Aside from "../components/Aside/Aside";
 import fetchHomepageData from "../redux/actions/fetchHomepageData.js";
-import { startLoading } from "../redux/actions/actions";
 import Loader from "../components/Loader";
 
 const FlexContainer = styled.section`
@@ -32,17 +31,17 @@ const Homepage = () => {
 		dispatch(fetchHomepageData());
 	}, []);
 
-	if (hasError) return <Redirect to="/calls-finished" />;
 	if (isLoading) return <Loader />;
+	if (hasError) return <Redirect to="/calls-finished" />;
 
 	return (
 		<>
-			<HeaderGrid data={headerData} />
-			<TrendingSection data={trendingData} />
+			<HeaderGrid articles={headerData} />
+			<TrendingSection articles={trendingData} />
 			<Sources />
 			<FlexContainer>
 				<Main response={mainRes} />
-				<Aside data={featuredData} />
+				<Aside articles={featuredData} />
 			</FlexContainer>
 		</>
 	);

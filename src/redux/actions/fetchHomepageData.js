@@ -9,6 +9,7 @@ import getHomepageData from "../../utility/getHomepageData";
 export default function fetchHomepageData() {
 	return async dispatch => {
 		dispatch(startLoading());
+
 		try {
 			const {
 				headerRes,
@@ -18,15 +19,17 @@ export default function fetchHomepageData() {
 			} = await getHomepageData();
 
 			const dataObj = {
-				headerData: headerRes.data,
-				trendingData: trendingRes.data,
-				featuredData: featuredRes.data,
+				headerData: headerRes.data.articles,
+				trendingData: trendingRes.data.articles,
+				featuredData: featuredRes.data.articles,
 				mainRes,
 			};
 
 			dispatch(setHomepageData(dataObj));
 		} catch (err) {
 			dispatch(errorOccured(err));
+		} finally {
+			dispatch(stopLoading());
 		}
 	};
 }

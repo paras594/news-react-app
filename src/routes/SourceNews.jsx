@@ -27,8 +27,8 @@ const SourceNews = () => {
 		dispatch(fetchArticlesData(url, pageSize));
 	}, [source]);
 
-	if (hasError) return <Redirect to="/calls-finished" />;
 	if (isLoading) return <Loader />;
+	if (hasError) return <Redirect to="/calls-finished" />;
 
 	return (
 		<ArticlesAsideContainer

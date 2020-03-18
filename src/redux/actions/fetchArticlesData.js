@@ -25,12 +25,15 @@ export default function fetchArticlesData(articlesUrl, pageSize) {
 			const dataObj = {
 				totalArticles: totalResults,
 				articlesData: articles,
-				asideData: asideRes.data,
+				asideData: asideRes.data.articles,
 			};
 
 			dispatch(setArticlesAndAside(dataObj));
 		} catch (err) {
 			dispatch(errorOccured(err));
+		} finally {
+			console.log("fetch done");
+			dispatch(stopLoading());
 		}
 	};
 }

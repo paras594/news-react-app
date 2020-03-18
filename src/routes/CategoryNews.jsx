@@ -28,8 +28,8 @@ const CategoryNews = () => {
 		dispatch(fetchArticlesData(url, pageSize));
 	}, [category]);
 
-	if (hasError) return <Redirect to="/calls-finished" />;
 	if (isLoading) return <Loader />;
+	if (hasError) return <Redirect to="/calls-finished" />;
 
 	return (
 		<ArticlesAsideContainer

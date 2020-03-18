@@ -28,8 +28,8 @@ const DomainNews = () => {
 		dispatch(fetchArticlesData(url, pageSize));
 	}, [domain]);
 
-	if (hasError) return <Redirect to="/calls-finished" />;
 	if (isLoading) return <Loader />;
+	if (hasError) return <Redirect to="/calls-finished" />;
 
 	return (
 		<ArticlesAsideContainer
