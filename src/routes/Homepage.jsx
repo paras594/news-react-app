@@ -8,6 +8,7 @@ import Sources from "../components/Sources";
 import Main from "../components/Main/Main";
 import Aside from "../components/Aside/Aside";
 import fetchHomepageData from "../redux/actions/fetchHomepageData.js";
+import { startLoading } from "../redux/actions/actions";
 import Loader from "../components/Loader";
 
 const FlexContainer = styled.section`
@@ -32,14 +33,7 @@ const Homepage = () => {
 	}, []);
 
 	if (hasError) return <Redirect to="/calls-finished" />;
-	if (
-		isLoading ||
-		headerData.length < 1 ||
-		trendingData.length < 1 ||
-		mainRes.length < 1 ||
-		featuredData.length < 1
-	)
-		return <Loader />;
+	if (isLoading) return <Loader />;
 
 	return (
 		<>

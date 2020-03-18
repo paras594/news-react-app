@@ -1,4 +1,9 @@
-import { startLoading, errorOccured, setHomepageData } from "./actions";
+import {
+	startLoading,
+	stopLoading,
+	errorOccured,
+	setHomepageData,
+} from "./actions";
 import getHomepageData from "../../utility/getHomepageData";
 
 export default function fetchHomepageData() {

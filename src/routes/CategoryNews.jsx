@@ -29,8 +29,7 @@ const CategoryNews = () => {
 	}, [category]);
 
 	if (hasError) return <Redirect to="/calls-finished" />;
-	if (isLoading || featuredData.length < 1 || articlesData.length < 1)
-		return <Loader />;
+	if (isLoading) return <Loader />;
 
 	return (
 		<ArticlesAsideContainer

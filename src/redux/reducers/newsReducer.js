@@ -7,7 +7,7 @@ const initialState = {
 	totalArticles: 0,
 	hasError: false,
 	error: {},
-	isLoading: false,
+	isLoading: true,
 };
 
 const newsReducer = (state = initialState, action) => {
@@ -27,9 +27,9 @@ const newsReducer = (state = initialState, action) => {
 		case "ERROR_OCCURED":
 			return {
 				...state,
-				isLoading: false,
 				hasError: true,
 				error: action.payload,
+				isLoading: false,
 			};
 
 		case "SET_HOMEPAGE_DATA":

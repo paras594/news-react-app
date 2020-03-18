@@ -1,4 +1,9 @@
-import { startLoading, errorOccured, setArticlesAndAside } from "./actions";
+import {
+	startLoading,
+	stopLoading,
+	errorOccured,
+	setArticlesAndAside,
+} from "./actions";
 import axios from "axios";
 
 export default function fetchArticlesData(articlesUrl, pageSize) {
