@@ -94,61 +94,61 @@ const HeaderGrid = ({ articles }) => {
 		<Header>
 			<Grid>
 				<GridItem className="first">
-					<img src={articles[0].urlToImage} alt={articles[0].author} />
-					<Description>
-						<MainTitle color="#fff">
-							<A href={articles[0].url} target="_blank">
+					<A height="100%" href={articles[0].url} target="_blank">
+						<img src={articles[0].urlToImage} alt={articles[0].author} />
+						<Description>
+							<MainTitle color="#fff">
 								{truncate(articles[0].title, 100)}
-							</A>
-						</MainTitle>
-						<Div>
-							<SLink
-								mright="1rem"
-								to={`/source/${articles[0].source.id}`}
-							>
-								<Button small>{articles[0].source.name}</Button>
-							</SLink>
-							<p>{moment(articles[0].publishedAt).fromNow()}</p>
-						</Div>
-					</Description>
+							</MainTitle>
+							<Div>
+								<SLink
+									mright="1rem"
+									to={`/source/${articles[0].source.id}`}
+								>
+									<Button small>{articles[0].source.name}</Button>
+								</SLink>
+								<p>{moment(articles[0].publishedAt).fromNow()}</p>
+							</Div>
+						</Description>
+					</A>
 				</GridItem>
 				<GridItem className="second">
-					<img src={articles[1].urlToImage} alt={articles[1].author} />
-					<Description>
-						<Title color="#fff">
-							<A href={articles[1].url} target="_blank">
+					<A height="100%" href={articles[1].url} target="_blank">
+						<img src={articles[1].urlToImage} alt={articles[1].author} />
+						<Description>
+							<Title color="#fff">
 								{truncate(articles[1].title, 100)}
-							</A>
-						</Title>
-						<Div>
-							<SLink
-								mright="1rem"
-								to={`/source/${articles[1].source.id}`}
-							>
-								<Button small>{articles[1].source.name}</Button>
-							</SLink>
-							<p>{moment(articles[1].publishedAt).fromNow()}</p>
-						</Div>
-					</Description>
+							</Title>
+							<Div>
+								<SLink
+									mright="1rem"
+									to={`/source/${articles[1].source.id}`}
+								>
+									<Button small>{articles[1].source.name}</Button>
+								</SLink>
+								<p>{moment(articles[1].publishedAt).fromNow()}</p>
+							</Div>
+						</Description>
+					</A>
 				</GridItem>
 				<GridItem className="third">
-					<img src={articles[2].urlToImage} alt={articles[2].author} />
-					<Description pSize=".8rem">
-						<Title color="#fff">
-							<A href={articles[2].url} target="_blank">
+					<A height="100%" href={articles[2].url} target="_blank">
+						<img src={articles[2].urlToImage} alt={articles[2].author} />
+						<Description pSize=".8rem">
+							<Title color="#fff">
 								{truncate(articles[2].title, 100)}
-							</A>
-						</Title>
-						<Div>
-							<SLink
-								mright="1rem"
-								to={`/source/${articles[2].source.id}`}
-							>
-								<Button small>{articles[2].source.name}</Button>
-							</SLink>
-							<p>{moment(articles[2].publishedAt).fromNow()}</p>
-						</Div>
-					</Description>
+							</Title>
+							<Div>
+								<SLink
+									mright="1rem"
+									to={`/source/${articles[2].source.id}`}
+								>
+									<Button small>{articles[2].source.name}</Button>
+								</SLink>
+								<p>{moment(articles[2].publishedAt).fromNow()}</p>
+							</Div>
+						</Description>
+					</A>
 				</GridItem>
 			</Grid>
 		</Header>

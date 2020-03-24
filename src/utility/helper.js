@@ -32,3 +32,7 @@ export function isHome() {
 export function capitalize(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export function random() {
+	return Math.round(Math.random());
+}

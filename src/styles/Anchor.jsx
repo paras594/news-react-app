@@ -5,10 +5,7 @@ const A = styled.a`
 	color: inherit;
 	text-decoration: none;
 	font-family: inherit;
-
-	&:hover {
-		text-decoration: underline;
-	}
+	height: ${props => (props.height ? props.height : "")};
 `;
 
 export default A;

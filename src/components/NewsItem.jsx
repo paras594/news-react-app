@@ -8,7 +8,7 @@ import A from "../styles/Anchor";
 import Button from "../styles/Button";
 import SLink from "../styles/SLink";
 
-const Item = styled.div`
+const Item = styled(A)`
 	display: grid;
 	grid-template-columns: 14rem 1fr;
 	margin-top: 1rem;
@@ -80,16 +80,12 @@ const NewsItem = ({ article }) => {
 	}
 
 	return (
-		<Item>
+		<Item href={article.url} target="_blank">
 			<ImgContainer>
 				<img src={article.urlToImage} alt={article.author} />
 			</ImgContainer>
 			<Content>
-				<Title>
-					<A href={article.url} target="_blank">
-						{truncate(article.title, 100)}
-					</A>
-				</Title>
+				<Title>{truncate(article.title, 100)}</Title>
 				<Div>
 					<SLink to={route}>
 						<Button small>{article.source.name}</Button>

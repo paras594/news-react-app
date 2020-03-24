@@ -5,6 +5,7 @@ import {
 	setArticlesAndAside,
 } from "./actions";
 import axios from "axios";
+import { random } from "../../utility/helper";
 
 export default function fetchArticlesData(articlesUrl, pageSize) {
 	return async dispatch => {
@@ -13,9 +14,9 @@ export default function fetchArticlesData(articlesUrl, pageSize) {
 			const [sourceRes, asideRes] = await axios.all([
 				axios.get(articlesUrl, { params: { pageSize } }),
 				axios.get(
-					`https://newsapi.org/v2/everything?sources=entertainment-weekly&apiKey=${
-						process.env.API_KEY
-					}`,
+					`https://newsapi.org/v2/everything?sources=${
+						random() ? "entertainment-weekly" : "mashable"
+					}&apiKey=${process.env.API_KEY}`,
 					{ params: { pageSize: 3 } }
 				),
 			]);
@@ -32,7 +33,6 @@ export default function fetchArticlesData(articlesUrl, pageSize) {
 		} catch (err) {
 			dispatch(errorOccured(err));
 		} finally {
-			console.log("fetch done");
 			dispatch(stopLoading());
 		}
 	};

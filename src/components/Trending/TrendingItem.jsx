@@ -14,6 +14,7 @@ const Item = styled.div`
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 `;
 
 const Img = styled.img`
@@ -58,22 +59,20 @@ const TrendingItem = ({ article }) => {
 	}
 
 	return (
-		<Item>
-			<Img src={article.urlToImage} alt={article.author} />
-			<Description>
-				<Title>
-					<A href={article.url} target="_blank">
-						{truncate(article.title, 100)}
-					</A>
-				</Title>
-				<Div>
-					<SLink to={`/source/${article.source.id}`}>
-						<Button small>{article.source.name}</Button>
-					</SLink>
-					<p>{moment(article.publishedAt).fromNow()}</p>
-				</Div>
-			</Description>
-		</Item>
+		<A height="100%" href={article.url} target="_blank">
+			<Item>
+				<Img src={article.urlToImage} alt={article.author} />
+				<Description>
+					<Title>{truncate(article.title, 100)}</Title>
+					<Div>
+						<SLink to={`/source/${article.source.id}`}>
+							<Button small>{article.source.name}</Button>
+						</SLink>
+						<p>{moment(article.publishedAt).fromNow()}</p>
+					</Div>
+				</Description>
+			</Item>
+		</A>
 	);
 };
 

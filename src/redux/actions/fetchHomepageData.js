@@ -27,7 +27,8 @@ export default function fetchHomepageData() {
 
 			dispatch(setHomepageData(dataObj));
 		} catch (err) {
-			dispatch(errorOccured(err));
+			console.log("this is my error:", err.response);
+			dispatch(errorOccured(err.response));
 		} finally {
 			dispatch(stopLoading());
 		}
