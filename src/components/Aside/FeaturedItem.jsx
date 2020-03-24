@@ -32,7 +32,7 @@ const ImgContainer = styled.div`
 	}
 `;
 
-const Item = styled.div`
+const Item = styled(A)`
 	margin-bottom: 1.8rem;
 	background: #fff;
 	border-radius: 0.5rem;
@@ -57,15 +57,13 @@ const FeaturedItem = ({ article }) => {
 	}
 
 	return (
-		<Item>
+		<Item href={article.url} target="_blank">
 			<ImgContainer>
 				<img src={article.urlToImage} alt={article.author} />
 				<p>{moment(article.publishedAt).fromNow()}</p>
 			</ImgContainer>
 			<Title size="0.9rem" weight="700" color="rgba(0, 0, 0, 0.9)">
-				<A href={article.url} target="_blank">
-					{truncate(article.title, 120)}
-				</A>
+				{truncate(article.title, 120)}
 			</Title>
 		</Item>
 	);
