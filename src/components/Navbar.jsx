@@ -5,9 +5,9 @@ import BrandName from "./BrandName";
 import Icon from "../styles/Icon";
 import Button from "../styles/Button";
 import { clrBlue } from "../styles/Variables";
+import { trim } from "../utility/helper";
 
 const Nav = styled.nav`
-	/* border: 1px solid red; */
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -43,6 +43,12 @@ const Navbar = () => {
 
 	function handleFormSubmit(e) {
 		e.preventDefault();
+		const trimmedValue = trim(value);
+
+		if (!trimmedValue) {
+			setValue(trimmedValue);
+			return;
+		}
 		history.push(`/search-results/${value}`);
 		setValue("");
 	}

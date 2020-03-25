@@ -21,6 +21,12 @@ const Main = styled.div`
 	flex: 1;
 `;
 
+const Error = styled.h1`
+	font-size: 1.4rem;
+	margin: 1.4rem 0;
+	font-weight: 100;
+`;
+
 const ArticlesAsideContainer = ({
 	totalData,
 	title,
@@ -50,7 +56,7 @@ const ArticlesAsideContainer = ({
 			</SLink>
 			<H1>{title}</H1>
 			{!hasError && totalData === 0 ? (
-				<h1>No Results Found.</h1>
+				<Error>Oops! No Results Found. Try again with a valid query.</Error>
 			) : (
 				<FlexContainer>
 					<Main>

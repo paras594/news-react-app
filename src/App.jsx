@@ -10,7 +10,8 @@ import SourceNews from "./routes/SourceNews";
 import DomainNews from "./routes/DomainNews";
 import CountryNews from "./routes/CountryNews";
 import SearchNews from "./routes/SearchNews";
-import CallFinishedErrorPage from "./routes/CallsFinishedErrorPage";
+import ErrorPage from "./routes/ErrorPage";
+import NoMatch from "./routes/NoMatch";
 
 const App = () => {
 	return (
@@ -25,10 +26,8 @@ const App = () => {
 					<Route path="/domain/:domain" component={DomainNews} />
 					<Route path="/country/:countryCode" component={CountryNews} />
 					<Route path="/search-results/:query" component={SearchNews} />
-					<Route
-						path="/calls-finished"
-						component={CallFinishedErrorPage}
-					/>
+					<Route path="/error" component={ErrorPage} />
+					<Route component={NoMatch} />
 				</Switch>
 			</Container>
 		</Router>

@@ -36,3 +36,7 @@ export function capitalize(str) {
 export function random() {
 	return Math.round(Math.random());
 }
+
+export function trim(str) {
+	return str.replace(/^\s\s*/, "").replace(/\s\s*$/, "");
+}

@@ -3,8 +3,8 @@ import styled from "styled-components";
 import newsCategories from "../utility/newsCategories";
 import { v4 as uuid } from "uuid";
 import NationalDropdownButton from "./NationalDropdownButton";
-import SLink from "../styles/SLink";
 import Button from "../styles/Button";
+import SNavLink from "../styles/SNavLink";
 
 const TopicsList = styled.div`
 	background: #eee;
@@ -23,11 +23,15 @@ const TopicsNav = () => {
 		<TopicsList>
 			<NationalDropdownButton />
 			{newsCategories.map(news => (
-				<SLink height="100%" key={uuid()} to={`/category/${news.category}`}>
+				<SNavLink
+					height="100%"
+					key={uuid()}
+					to={`/category/${news.category}`}
+				>
 					<Button small height="100%">
 						{news.category}
 					</Button>
-				</SLink>
+				</SNavLink>
 			))}
 		</TopicsList>
 	);

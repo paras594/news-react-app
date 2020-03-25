@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Button from "../styles/Button";
@@ -7,34 +7,6 @@ import apiTimeoutImg from "../images/api-timeout.png";
 import notFoundImg from "../images/not-found.png";
 import serverErrorImg from "../images/server-error.png";
 import errorImg from "../images/error.png";
-
-/*
-errors:
-	{
-		status: 401,
-		data.code: apiKeyInvalid,
-		data.msg: Your API key is invalid or incorrect. Check your key, or go to https://newsapi.org to create a free API key.
-	},
-	{
-		status: 400,
-		data.code: bad request,
-		data.msg: Your API key was missing from the request, or wasn't correct.
-	},
-	{
-		status: 429,
-		data.code: Too many requests,
-		data.msg: You made too many requests within a window of time and have been rate limited. Back off for a while.
-	},
-	{
-		status: 500,
-		data.code: server error,
-		data.msg: Something went wrong on our side.
-	},
-	{
-		
-	}
-
-*/
 
 const Div = styled.div`
 	display: flex;
@@ -49,15 +21,6 @@ const ErrorCode = styled.div`
 		width: auto;
 		object-fit: cover;
 	}
-`;
-
-const Digit = styled.div`
-	font-weight: 900;
-	color: ${props => (props.blue ? "royalblue" : "#ddd")};
-	margin: 0 1rem;
-	font-family: "Monda", sans-serif;
-	line-height: 1;
-	font-size: ${props => (props.big ? "15rem" : "11rem")};
 `;
 
 const H2 = styled.h2`

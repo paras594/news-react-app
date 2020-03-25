@@ -28,7 +28,7 @@ const SourceNews = () => {
 	}, [source]);
 
 	if (isLoading) return <Loader />;
-	if (hasError) return <Redirect to="/calls-finished" />;
+	if (hasError) return <Redirect to="/error" />;
 
 	return (
 		<ArticlesAsideContainer
