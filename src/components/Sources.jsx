@@ -10,26 +10,64 @@ import NDTVNews from "../images/source-ndtv-news.png";
 import { Link } from "react-router-dom";
 
 const Section = styled.section`
-	margin-top: 5rem;
-	margin-bottom: 6rem;
+	margin-top: 4rem;
+	margin-bottom: 5rem;
 	margin-left: auto;
 	margin-right: auto;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
-	/*width: 90%;*/
+
+	@media (max-width: 1350px) {
+		justify-content: center;
+	}
+
+	@media (max-width: 1100px) {
+		margin-top: 3.5rem;
+		margin-bottom: 3.5rem;
+	}
+
+	@media (max-width: 1000px) {
+		margin-top: 2.5rem;
+		margin-bottom: 2.5rem;
+	}
+
+	@media (max-width: 850px) {
+		width: 90%;
+	}
+
+	@media (max-width: 550px) {
+		width: 100%;
+		justify-content: center;
+	}
 `;
 
 const StyledLink = styled(Link)`
 	display: flex;
 	height: 7rem;
 	width: 7rem;
+	margin: 1rem 1rem;
 	justify-content: center;
 	align-items: center;
 	border-radius: 50%;
 	overflow: hidden;
 	border: 1px solid rgba(0, 0, 0, 0.3);
 	transition: box-shadow 0.2s ease;
+
+	@media (max-width: 1350px) {
+		height: 6rem;
+		width: 6rem;
+	}
+
+	@media (max-width: 1100px) {
+		height: 5rem;
+		width: 5rem;
+	}
+
+	@media (max-width: 500px) {
+		height: 4rem;
+		width: 4rem;
+	}
 
 	&:hover {
 		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);

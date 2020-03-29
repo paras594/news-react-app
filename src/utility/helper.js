@@ -40,3 +40,7 @@ export function random() {
 export function trim(str) {
 	return str.replace(/^\s\s*/, "").replace(/\s\s*$/, "");
 }
+
+export function openLink(url) {
+	window.open(url, "_blank");
+}

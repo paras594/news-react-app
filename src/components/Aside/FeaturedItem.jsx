@@ -3,8 +3,8 @@ import styled from "styled-components";
 import noImgPlaceholder from "../../images/no-img-available.jpg";
 import { truncate } from "../../utility/helper";
 import moment from "moment";
-import A from "../../styles/Anchor";
 import { P } from "../../styles/Typography";
+import { openLink } from "../../utility/helper";
 
 const ImgContainer = styled.div`
 	height: 11rem;
@@ -32,12 +32,13 @@ const ImgContainer = styled.div`
 	}
 `;
 
-const Item = styled(A)`
+const Item = styled.div`
 	margin-bottom: 1.8rem;
 	background: #fff;
 	border-radius: 0.5rem;
 	overflow: hidden;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
 `;
 
 const Title = styled(P)`
@@ -57,7 +58,7 @@ const FeaturedItem = ({ article }) => {
 	}
 
 	return (
-		<Item href={article.url} target="_blank">
+		<Item onClick={() => openLink(article.url)}>
 			<ImgContainer>
 				<img src={article.urlToImage} alt={article.author} />
 				<p>{moment(article.publishedAt).fromNow()}</p>

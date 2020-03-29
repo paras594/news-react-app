@@ -14,6 +14,10 @@ const Div = styled.div`
 	background: ${clrLightGrey};
 	width: 100%;
 	padding: 1rem 1.6rem;
+
+	@media (max-width: 1250px) {
+		padding: 1rem 1.3rem;
+	}
 `;
 
 const FeaturedNews = styled.div`

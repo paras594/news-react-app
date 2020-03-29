@@ -17,6 +17,14 @@ body {
 	font-family: "Quicksand", sans-serif;
 	font-size: 20px;
 	scroll-behavior: smooth;
+
+	@media (max-width: 1550px) {
+		font-size: 17px;
+	}
+
+	@media (max-width: 1250px) {
+		font-size: 15px;
+	}
 }
 
 body {

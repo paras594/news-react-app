@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { truncate } from "../../utility/helper";
+import { truncate, openLink } from "../../utility/helper";
 import noImgPlaceholder from "../../images/no-img-available.jpg";
 import { H5 } from "../../styles/Typography";
 import moment from "moment";
-import A from "../../styles/Anchor";
 import SLink from "../../styles/SLink";
 import Button from "../../styles/Button";
 
@@ -15,6 +14,7 @@ const Item = styled.div`
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+	cursor: pointer;
 `;
 
 const Img = styled.img`
@@ -22,6 +22,10 @@ const Img = styled.img`
 	height: 10rem;
 	object-fit: cover;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+	@media (max-width: 1150px) {
+		height: 16rem;
+	}
 `;
 
 const Description = styled.div`
@@ -34,6 +38,10 @@ const Description = styled.div`
 
 const Title = styled(H5)`
 	margin-bottom: 0.8rem;
+
+	@media (max-width: 1150px) {
+		margin-bottom: 1rem;
+	}
 `;
 
 const Div = styled.div`
@@ -59,20 +67,18 @@ const TrendingItem = ({ article }) => {
 	}
 
 	return (
-		<A height="100%" href={article.url} target="_blank">
-			<Item>
-				<Img src={article.urlToImage} alt={article.author} />
-				<Description>
-					<Title>{truncate(article.title, 100)}</Title>
-					<Div>
-						<SLink to={`/source/${article.source.id}`}>
-							<Button small>{article.source.name}</Button>
-						</SLink>
-						<p>{moment(article.publishedAt).fromNow()}</p>
-					</Div>
-				</Description>
-			</Item>
-		</A>
+		<Item onClick={() => openLink(article.url)}>
+			<Img src={article.urlToImage} alt={article.author} />
+			<Description>
+				<Title>{truncate(article.title, 100)}</Title>
+				<Div>
+					<SLink to={`/source/${article.source.id}`}>
+						<Button small>{article.source.name}</Button>
+					</SLink>
+					<p>{moment(article.publishedAt).fromNow()}</p>
+				</Div>
+			</Description>
+		</Item>
 	);
 };
 

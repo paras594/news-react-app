@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,6 +16,7 @@ const FlexContainer = styled.section`
 
 const Homepage = () => {
 	const newsState = useSelector(state => state.news);
+
 	const {
 		isLoading,
 		headerData,

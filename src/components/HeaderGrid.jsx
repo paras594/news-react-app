@@ -4,9 +4,9 @@ import { truncate } from "../utility/helper";
 import { H1, H4 } from "../styles/Typography";
 import { fadeInItem } from "../styles/animations";
 import moment from "moment";
-import A from "../styles/Anchor";
 import SLink from "../styles/SLink";
 import Button from "../styles/Button";
+import { openLink } from "../utility/helper";
 
 const Header = styled.header`
 	animation: 1s ${fadeInItem} ease;
@@ -20,6 +20,31 @@ const Grid = styled.div`
 		"first second"
 		"first third";
 	gap: 0.8rem;
+
+	@media (max-width: 1250px) {
+		grid-template-rows: 11rem 11rem;
+	}
+
+	@media (max-width: 1000px) {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 14rem 20rem;
+		grid-template-areas:
+			"second third"
+			"first first";
+	}
+
+	@media (max-width: 700px) {
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(3, 18rem);
+		grid-template-areas:
+			"first"
+			"second"
+			"third";
+	}
+
+	@media (max-width: 400px) {
+		grid-template-rows: repeat(3, 13rem);
+	}
 
 	img {
 		height: 100%;
@@ -47,6 +72,7 @@ const GridItem = styled.div`
 	border-radius: 1rem;
 	overflow: hidden;
 	height: 100%;
+	cursor: pointer;
 `;
 
 const Description = styled.div`
@@ -77,6 +103,11 @@ const Description = styled.div`
 
 const MainTitle = styled(H1)`
 	margin-bottom: 0.4rem;
+
+	@media (max-width: 700px) {
+		font-size: 1.1rem;
+		margin-bottom: 0.5rem;
+	}
 `;
 
 const Title = styled(H4)`
@@ -93,62 +124,61 @@ const HeaderGrid = ({ articles }) => {
 	return (
 		<Header>
 			<Grid>
-				<GridItem className="first">
-					<A height="100%" href={articles[0].url} target="_blank">
-						<img src={articles[0].urlToImage} alt={articles[0].author} />
-						<Description>
-							<MainTitle color="#fff">
-								{truncate(articles[0].title, 100)}
-							</MainTitle>
-							<Div>
-								<SLink
-									mright="1rem"
-									to={`/source/${articles[0].source.id}`}
-								>
-									<Button small>{articles[0].source.name}</Button>
-								</SLink>
-								<p>{moment(articles[0].publishedAt).fromNow()}</p>
-							</Div>
-						</Description>
-					</A>
+				<GridItem
+					className="first"
+					onClick={() => openLink(articles[0].url)}
+				>
+					<img src={articles[0].urlToImage} alt={articles[0].author} />
+					<Description>
+						<MainTitle color="#fff">
+							{truncate(articles[0].title, 100)}
+						</MainTitle>
+						<Div>
+							<SLink
+								mright="1rem"
+								to={`/source/${articles[0].source.id}`}
+							>
+								<Button small>{articles[0].source.name}</Button>
+							</SLink>
+							<p>{moment(articles[0].publishedAt).fromNow()}</p>
+						</Div>
+					</Description>
 				</GridItem>
-				<GridItem className="second">
-					<A height="100%" href={articles[1].url} target="_blank">
-						<img src={articles[1].urlToImage} alt={articles[1].author} />
-						<Description>
-							<Title color="#fff">
-								{truncate(articles[1].title, 100)}
-							</Title>
-							<Div>
-								<SLink
-									mright="1rem"
-									to={`/source/${articles[1].source.id}`}
-								>
-									<Button small>{articles[1].source.name}</Button>
-								</SLink>
-								<p>{moment(articles[1].publishedAt).fromNow()}</p>
-							</Div>
-						</Description>
-					</A>
+				<GridItem
+					className="second"
+					onClick={() => openLink(articles[1].url)}
+				>
+					<img src={articles[1].urlToImage} alt={articles[1].author} />
+					<Description>
+						<Title color="#fff">{truncate(articles[1].title, 100)}</Title>
+						<Div>
+							<SLink
+								mright="1rem"
+								to={`/source/${articles[1].source.id}`}
+							>
+								<Button small>{articles[1].source.name}</Button>
+							</SLink>
+							<p>{moment(articles[1].publishedAt).fromNow()}</p>
+						</Div>
+					</Description>
 				</GridItem>
-				<GridItem className="third">
-					<A height="100%" href={articles[2].url} target="_blank">
-						<img src={articles[2].urlToImage} alt={articles[2].author} />
-						<Description pSize=".8rem">
-							<Title color="#fff">
-								{truncate(articles[2].title, 100)}
-							</Title>
-							<Div>
-								<SLink
-									mright="1rem"
-									to={`/source/${articles[2].source.id}`}
-								>
-									<Button small>{articles[2].source.name}</Button>
-								</SLink>
-								<p>{moment(articles[2].publishedAt).fromNow()}</p>
-							</Div>
-						</Description>
-					</A>
+				<GridItem
+					className="third"
+					onClick={() => openLink(articles[2].url)}
+				>
+					<img src={articles[2].urlToImage} alt={articles[2].author} />
+					<Description pSize=".8rem">
+						<Title color="#fff">{truncate(articles[2].title, 100)}</Title>
+						<Div>
+							<SLink
+								mright="1rem"
+								to={`/source/${articles[2].source.id}`}
+							>
+								<Button small>{articles[2].source.name}</Button>
+							</SLink>
+							<p>{moment(articles[2].publishedAt).fromNow()}</p>
+						</Div>
+					</Description>
 				</GridItem>
 			</Grid>
 		</Header>

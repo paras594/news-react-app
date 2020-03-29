@@ -4,11 +4,11 @@ import { truncate } from "../utility/helper";
 import noImgPlaceholder from "../images/no-img-available.jpg";
 import { H5 } from "../styles/Typography";
 import moment from "moment";
-import A from "../styles/Anchor";
 import Button from "../styles/Button";
 import SLink from "../styles/SLink";
+import { openLink } from "../utility/helper";
 
-const Item = styled(A)`
+const Item = styled.div`
 	display: grid;
 	grid-template-columns: 14rem 1fr;
 	margin-top: 1rem;
@@ -17,12 +17,35 @@ const Item = styled(A)`
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 0.5rem;
 	overflow: hidden;
+	cursor: pointer;
+
+	@media (max-width: 800px) {
+		grid-template-columns: 12rem 1fr;
+	}
+
+	@media (max-width: 700px) {
+		grid-template-columns: 10rem 1fr;
+	}
+
+	@media (max-width: 520px) {
+		display: flex;
+		flex-direction: column;
+		margin-left: 0;
+	}
 `;
 
 const ImgContainer = styled.div`
 	overflow: hidden;
 	height: calc(12rem / 1.5);
 	border-right: 1px solid rgba(0, 0, 0, 0.2);
+
+	@media (max-width: 700px) {
+		height: 9rem;
+	}
+
+	@media (max-width: 520px) {
+		height: 16rem;
+	}
 
 	img {
 		display: block;
@@ -80,7 +103,7 @@ const NewsItem = ({ article }) => {
 	}
 
 	return (
-		<Item href={article.url} target="_blank">
+		<Item onClick={() => openLink(article.url)}>
 			<ImgContainer>
 				<img src={article.urlToImage} alt={article.author} />
 			</ImgContainer>

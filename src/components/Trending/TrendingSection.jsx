@@ -10,6 +10,11 @@ import Button from "../../styles/Button";
 const Section = styled.section`
 	margin-top: 4.2rem;
 	margin-bottom: 3rem;
+
+	@media (max-width: 1100px) {
+		margin-top: 3rem;
+		margin-bottom: 0;
+	}
 `;
 
 const Header = styled.div`
@@ -28,6 +33,15 @@ const Items = styled.div`
 	column-gap: 1rem;
 	margin: 1rem 0;
 	animation: 1s ${fadeInItem} ease;
+
+	@media (max-width: 1150px) {
+		grid-template-columns: repeat(2, 1fr);
+		row-gap: 1rem;
+	}
+
+	@media (max-width: 550px) {
+		grid-template-columns: 1fr;
+	}
 `;
 
 const TrendingSection = ({ articles }) => {

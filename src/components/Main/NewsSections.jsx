@@ -12,6 +12,10 @@ const Section = styled.section`
 	margin-bottom: 2.4rem;
 	margin-right: 1.5rem;
 
+	@media (max-width: 1100px) {
+		margin-right: 0;
+	}
+
 	a {
 		text-decoration: none;
 	}
@@ -24,6 +28,10 @@ const Container = styled.div`
 
 	a {
 		align-self: flex-end;
+
+		@media (max-width: 520px) {
+			align-self: center;
+		}
 	}
 `;
 

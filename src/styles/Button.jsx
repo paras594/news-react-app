@@ -22,6 +22,10 @@ const Button = styled.button`
 	cursor: pointer;
 	outline: none;
 
+	@media (max-width: 1250px) {
+		font-size: ${props => (props.fontSize ? props.fontSize : "0.8rem")};
+	}
+
 	&::-moz-focus-inner {
 		border: 0;
 	}
