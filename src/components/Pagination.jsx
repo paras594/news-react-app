@@ -8,6 +8,10 @@ const PaginationContainer = styled.div`
 	margin-right: 1.8rem;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
+
+	@media (max-width: 1100px) {
+		margin-right: 0;
+	}
 `;
 const Button = styled.button`
 	border-radius: 50%;
@@ -17,11 +21,16 @@ const Button = styled.button`
 	align-items: center;
 	justify-content: center;
 	outline: none;
-	font-size: 1rem;
+	font-size: 1.2rem;
 	background: ${clrLightGrey};
 	border: none;
 	cursor: pointer;
 	color: rgba(0, 0, 0, 0.8);
+
+	@media (max-width: 1350px) {
+		height: 2.6rem;
+		width: 2.6rem;
+	}
 `;
 
 const PageButtons = styled.div`
@@ -34,6 +43,10 @@ const PageButtons = styled.div`
 	margin: 0 0.6rem;
 	height: 2.4rem;
 	padding: 0 0.5rem;
+
+	@media (max-width: 1350px) {
+		height: 2.6rem;
+	}
 
 	button {
 		border-radius: 50%;
@@ -48,6 +61,12 @@ const PageButtons = styled.div`
 		align-items: center;
 		font-size: 0.8rem;
 		color: rgba(0, 0, 0, 0.9);
+
+		@media (max-width: 1350px) {
+			font-size: 1rem;
+			height: 2rem;
+			width: 2rem;
+		}
 
 		&.active {
 			background: ${clrBlue};
