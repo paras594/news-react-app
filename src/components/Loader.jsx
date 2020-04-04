@@ -13,76 +13,6 @@ const rotate = keyframes`
   }
 `;
 
-const bubbleOne = keyframes`
-  0%{ top: 0; }
-  
-  50%{ top: 50%; }
-  
-  100%{ top: 0; }
-`;
-
-const bubbleTwo = keyframes`
-  0%{ left: 100%; }
-  
-  50%{ left: 50%; }
-  
-  100%{ left: 100%; }
-`;
-
-const bubbleThree = keyframes`
-  0%{ top: 100%; }
-  
-  50%{ top: 50%; }
-  
-  100%{ top: 100%; }
-`;
-
-const bubbleFour = keyframes`
-  0%{ left: 0; }
-  
-  50%{ left: 50%; }
-  
-  100%{ left: 0; }
-`;
-
-const Bubbles = styled.div`
-	width: 3rem;
-	height: 3rem;
-	position: relative;
-	animation: ${rotate} 1.5s infinite linear;
-`;
-
-const Bubble = styled.div`
-	position: absolute;
-	border-radius: 50%;
-	width: 1rem;
-	z-index: 99;
-	height: 1rem;
-	background: rgba(0, 0, 255, 0.4);
-	transform: translate(-50%, -50%);
-	animation: ${props => props.animation} 1.2s infinite;
-`;
-
-const BubbleOne = styled(Bubble)`
-	top: 0;
-	left: 50%;
-`;
-
-const BubbleTwo = styled(Bubble)`
-	top: 50%;
-	left: 100%;
-`;
-
-const BubbleThree = styled(Bubble)`
-	top: 100%;
-	left: 50%;
-`;
-
-const BubbleFour = styled(Bubble)`
-	top: 50%;
-	left: 0;
-`;
-
 const LoaderContainer = styled.div`
 	width: 100%;
 	height: 18rem;
@@ -103,6 +33,13 @@ const Div = styled.div`
 	background: transparent;
 	border-radius: 50%;
 	animation: ${rotate} 1s infinite;
+
+	@media (max-width: 700px) {
+		width: 3rem;
+		height: 3rem;
+		border: 0.3rem solid;
+		border-color: ${clrBlue} #ddd #ddd #ddd;
+	}
 `;
 
 const Loader = () => {
@@ -120,12 +57,5 @@ const Loader = () => {
 		</LoaderContainer>
 	);
 };
-
-// <Bubbles>
-// 				<BubbleOne animation={bubbleOne} />
-// 				<BubbleTwo animation={bubbleTwo} />
-// 				<BubbleThree animation={bubbleThree} />
-// 				<BubbleFour animation={bubbleFour} />
-// 			</Bubbles>
 
 export default Loader;

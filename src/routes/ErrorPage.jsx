@@ -12,13 +12,25 @@ const Div = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-bottom: 2rem;
 `;
 
 const ErrorCode = styled.div`
-	height: 15rem;
+	width: 60%;
+	margin: 0 auto;
+	height: auto;
+
+	@media (max-width: 1100px) {
+		width: 80%;
+	}
+
+	@media (max-width: 700px) {
+		width: 100%;
+	}
+
 	img {
 		height: 100%;
-		width: auto;
+		width: 100%;
 		object-fit: cover;
 	}
 `;
@@ -27,6 +39,19 @@ const H2 = styled.h2`
 	text-align: center;
 	font-size: 2.4rem;
 	margin-top: 1.5rem;
+
+	@media (max-width: 1350px) {
+		font-size: 2rem;
+		margin-top: 1rem;
+	}
+
+	@media (max-width: 1100px) {
+		font-size: 1.6rem;
+	}
+
+	@media (max-width: 700px) {
+		font-size: 1.3rem;
+	}
 `;
 
 const P = styled.p`
@@ -38,6 +63,16 @@ const P = styled.p`
 	margin-top: 1rem;
 	margin-bottom: 2rem;
 	line-height: 1.5;
+
+	@media (max-width: 1100px) {
+		font-size: 1rem;
+		width: 80%;
+	}
+
+	@media (max-width: 700px) {
+		width: 100%;
+		margin-top: 0.5rem;
+	}
 `;
 
 const CallFinishedErrorPage = () => {

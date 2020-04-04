@@ -8,6 +8,7 @@ import Pagination from "./Pagination";
 import SLink from "../styles/SLink";
 import Icon from "../styles/Icon";
 import Button from "../styles/Button";
+import { capitalize } from "../utility/helper";
 
 const Wrapper = styled.div`
 	animation: ${fadeInItem} 1s ease;
@@ -54,7 +55,7 @@ const ArticlesAsideContainer = ({
 					<Icon mright=".5rem" className="fas fa-angle-left" /> Go to Home
 				</Button>
 			</SLink>
-			<H1>{title}</H1>
+			<H1>{capitalize(title)}</H1>
 			{!hasError && totalData === 0 ? (
 				<Error>Oops! No Results Found. Try again with a valid query.</Error>
 			) : (

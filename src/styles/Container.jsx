@@ -4,6 +4,7 @@ const Container = styled.div`
 	max-width: 1366px;
 	margin: 0 auto;
 	width: 90%;
+	flex: 1;
 
 	@media (max-width: 1550px) {
 		width: 85%;

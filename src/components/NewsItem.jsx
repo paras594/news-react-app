@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { truncate } from "../utility/helper";
+import { truncate, openLink } from "../utility/helper";
 import noImgPlaceholder from "../images/no-img-available.jpg";
 import { H5 } from "../styles/Typography";
 import moment from "moment";
 import Button from "../styles/Button";
 import SLink from "../styles/SLink";
-import { openLink } from "../utility/helper";
+import A from "../styles/Anchor";
 
 const Item = styled.div`
 	display: grid;
@@ -17,7 +17,6 @@ const Item = styled.div`
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 0.5rem;
 	overflow: hidden;
-	cursor: pointer;
 
 	@media (max-width: 800px) {
 		grid-template-columns: 12rem 1fr;
@@ -38,6 +37,7 @@ const ImgContainer = styled.div`
 	overflow: hidden;
 	height: calc(12rem / 1.5);
 	border-right: 1px solid rgba(0, 0, 0, 0.2);
+	cursor: pointer;
 
 	@media (max-width: 700px) {
 		height: 9rem;
@@ -45,6 +45,8 @@ const ImgContainer = styled.div`
 
 	@media (max-width: 520px) {
 		height: 16rem;
+		border-right: 0;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	}
 
 	img {
@@ -103,12 +105,16 @@ const NewsItem = ({ article }) => {
 	}
 
 	return (
-		<Item onClick={() => openLink(article.url)}>
-			<ImgContainer>
+		<Item>
+			<ImgContainer onClick={() => openLink(article.url)}>
 				<img src={article.urlToImage} alt={article.author} />
 			</ImgContainer>
 			<Content>
-				<Title>{truncate(article.title, 100)}</Title>
+				<Title>
+					<A href={article.url} target="_blank">
+						{truncate(article.title, 100)}
+					</A>
+				</Title>
 				<Div>
 					<SLink to={route}>
 						<Button small>{article.source.name}</Button>

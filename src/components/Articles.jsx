@@ -7,6 +7,10 @@ const Section = styled.section`
 	margin-right: 1.5rem;
 	display: flex;
 	flex-direction: column;
+
+	@media (max-width: 1100px) {
+		margin-right: 0;
+	}
 `;
 
 const Articles = ({ data }) => {

@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import noImgPlaceholder from "../../images/no-img-available.jpg";
-import { truncate } from "../../utility/helper";
+import { truncate, openLink } from "../../utility/helper";
 import moment from "moment";
 import { P } from "../../styles/Typography";
-import { openLink } from "../../utility/helper";
+import A from "../../styles/Anchor";
 
 const ImgContainer = styled.div`
 	height: 11rem;
@@ -17,6 +17,7 @@ const ImgContainer = styled.div`
 		display: block;
 		object-fit: cover;
 		margin: 0 auto;
+		cursor: pointer;
 	}
 
 	p {
@@ -38,7 +39,6 @@ const Item = styled.div`
 	border-radius: 0.5rem;
 	overflow: hidden;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-	cursor: pointer;
 `;
 
 const Title = styled(P)`
@@ -58,13 +58,19 @@ const FeaturedItem = ({ article }) => {
 	}
 
 	return (
-		<Item onClick={() => openLink(article.url)}>
+		<Item>
 			<ImgContainer>
-				<img src={article.urlToImage} alt={article.author} />
+				<img
+					src={article.urlToImage}
+					alt={article.author}
+					onClick={() => openLink(article.url)}
+				/>
 				<p>{moment(article.publishedAt).fromNow()}</p>
 			</ImgContainer>
 			<Title size="0.9rem" weight="700" color="rgba(0, 0, 0, 0.9)">
-				{truncate(article.title, 120)}
+				<A href={article.url} target="_blank">
+					{truncate(article.title, 120)}
+				</A>
 			</Title>
 		</Item>
 	);

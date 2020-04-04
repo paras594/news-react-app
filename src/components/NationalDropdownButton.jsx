@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import newsCountries from "../utility/newsCountries";
 import { v4 as uuid } from "uuid";
@@ -8,7 +8,6 @@ import SLink from "../styles/SLink";
 import { clrBlue } from "../styles/Variables";
 
 const Div = styled.div`
-	position: relative;
 	display: inline-block;
 	height: 100%;
 `;
@@ -20,21 +19,39 @@ const Dropdown = styled.ul`
 	list-style: none;
 	background: #fff;
 	width: 14rem;
-	height: ${props => props.height};
+	height: 0;
 	overflow-y: auto;
 	padding: 0.5rem 0;
-	transition: height 0.3s ease, opacity 0.4s ease;
-	opacity: ${props => props.opacity};
-	display: ${props => props.display};
+	transition: height 0.25s ease, opacity 0.3s ease;
+	opacity: 0;
+	display: none;
 	z-index: 99;
 	box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.25);
 	border-top-left-radius: 0.5rem;
 	border-bottom-left-radius: 0.5rem;
 
+	@media (max-width: 700px) {
+		width: 100%;
+	}
+
+	&.open-dropdown {
+		height: 256px;
+		opacity: 1;
+	}
+
+	&.block {
+		display: block;
+	}
+
 	li {
-		padding: 0.5rem 1rem;
+		font-size: 1.1rem;
+		padding: 0.6rem 1rem;
 		color: rgba(0, 0, 0, 0.8);
 		transition: background 0.15s ease, color 0.1s ease;
+
+		@media (max-width: 700px) {
+			text-align: center;
+		}
 
 		&:hover {
 			background: ${clrBlue};
@@ -44,49 +61,43 @@ const Dropdown = styled.ul`
 `;
 
 const NationalDropdownButton = () => {
-	const [opacity, setOpacity] = useState(0);
-	const [display, setDisplay] = useState("none");
-	const [height, setHeight] = useState("0");
-	const [open, setOpen] = useState(false);
+	const dropdown = useRef();
 
-	function openDropdown() {
-		setDisplay("block");
-		setTimeout(() => {
-			setOpacity(1);
-			setHeight("14rem");
-			setOpen(true);
-		}, 10);
-	}
+	function toggleDropdown() {
+		const activeElem = document.querySelector(".open-dropdown");
+		const delay = activeElem ? 300 : 0;
 
-	function closeDropdown() {
-		setOpacity(0);
-		setHeight("0");
-		setTimeout(() => {
-			setDisplay("none");
-			setOpen(false);
-		}, 500);
-	}
-
-	function handleClick() {
-		if (!open) {
-			openDropdown();
-		} else {
-			closeDropdown();
+		if (activeElem) {
+			activeElem.classList.remove("open-dropdown");
+			setTimeout(() => {
+				activeElem.classList.remove("block");
+			}, 300);
 		}
+
+		if (activeElem !== dropdown.current) {
+			setTimeout(() => {
+				dropdown.current.classList.add("block");
+				setTimeout(() => {
+					dropdown.current.classList.add("open-dropdown");
+				}, 10);
+			}, delay);
+		}
+
+		return;
 	}
 
 	return (
 		<Div>
-			<Button height="100%" onClick={handleClick}>
+			<Button height="100%" onClick={toggleDropdown}>
 				National <Icon mleft=".5rem" className="fas fa-angle-down" />
 			</Button>
-			<Dropdown opacity={opacity} display={display} height={height}>
+			<Dropdown ref={dropdown}>
 				{newsCountries.map(country => (
 					<li key={uuid()}>
 						<SLink
 							display="block"
 							to={`/country/${country.countryCode}`}
-							onClick={() => closeDropdown()}
+							onClick={toggleDropdown}
 						>
 							{country.countryName}
 						</SLink>

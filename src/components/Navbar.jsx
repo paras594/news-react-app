@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import BrandName from "./BrandName";
@@ -14,10 +14,25 @@ const Nav = styled.nav`
 	height: 3rem;
 	margin-bottom: 1rem;
 	margin-top: 0.8rem;
+
+	@media (max-width: 650px) {
+		flex-direction: column;
+		height: auto;
+		justify-content: center;
+	}
 `;
 
 const Form = styled.form`
 	display: flex;
+
+	@media (max-width: 650px) {
+		margin-top: 0.8rem;
+	}
+
+	@media (max-width: 450px) {
+		width: 100%;
+	}
+
 	input {
 		width: 14rem;
 		font-size: 0.85rem;
@@ -27,6 +42,15 @@ const Form = styled.form`
 		padding: 0.4rem 0.7rem;
 		margin-right: 0.4rem;
 
+		@media (max-width: 650px) {
+			width: 18rem;
+		}
+
+		@media (max-width: 450px) {
+			width: 100%;
+			flex: 1;
+		}
+
 		&:focus {
 			border: 1px solid ${clrBlue};
 		}
@@ -35,7 +59,27 @@ const Form = styled.form`
 
 const Navbar = () => {
 	const [value, setValue] = useState("");
+	const [showText, setShowText] = useState(true);
 	const history = useHistory();
+	const under450 = window.matchMedia(
+		"(min-width: 1px) and (max-width: 450px)"
+	);
+
+	useLayoutEffect(() => {
+		const under450Handler = x => {
+			if (x.matches) {
+				setShowText(false);
+			} else {
+				setShowText(true);
+			}
+		};
+
+		under450Handler(under450);
+
+		under450.addListener(under450Handler);
+
+		return () => under450.removeListener(under450Handler);
+	}, []);
 
 	function handleInputChange(e) {
 		setValue(e.target.value);
@@ -60,11 +104,11 @@ const Navbar = () => {
 				<input type="text" value={value} onChange={handleInputChange} />
 				<Button type="submit">
 					<Icon
-						mright=".3rem"
+						mright={showText ? ".3rem" : "0"}
 						fontSize=".8rem"
 						className="fas fa-search"
 					/>
-					Search
+					{showText ? "Search" : null}
 				</Button>
 			</Form>
 		</Nav>

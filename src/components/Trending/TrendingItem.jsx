@@ -6,6 +6,7 @@ import { H5 } from "../../styles/Typography";
 import moment from "moment";
 import SLink from "../../styles/SLink";
 import Button from "../../styles/Button";
+import A from "../../styles/Anchor";
 
 const Item = styled.div`
 	border: 1px solid rgba(0, 0, 0, 0.2);
@@ -67,10 +68,18 @@ const TrendingItem = ({ article }) => {
 	}
 
 	return (
-		<Item onClick={() => openLink(article.url)}>
-			<Img src={article.urlToImage} alt={article.author} />
+		<Item>
+			<Img
+				onClick={() => openLink(article.url)}
+				src={article.urlToImage}
+				alt={article.author}
+			/>
 			<Description>
-				<Title>{truncate(article.title, 100)}</Title>
+				<Title>
+					<A href={article.url} target="_blank">
+						{truncate(article.title, 100)}
+					</A>
+				</Title>
 				<Div>
 					<SLink to={`/source/${article.source.id}`}>
 						<Button small>{article.source.name}</Button>

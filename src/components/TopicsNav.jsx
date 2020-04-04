@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
+import React, { useState, useLayoutEffect, useEffect, useRef } from "react";
 import styled from "styled-components";
 import newsCategories from "../utility/newsCategories";
 import { v4 as uuid } from "uuid";
@@ -8,6 +8,7 @@ import SNavLink from "../styles/SNavLink";
 import TopicsDropdownButton from "./TopicsDropdownButton";
 
 const TopicsList = styled.div`
+	position: relative;
 	background: #eee;
 	display: flex;
 	justify-content: space-evenly;
@@ -27,6 +28,7 @@ const TopicsNav = () => {
 	const [navItems, setNavItems] = useState([]);
 	const [dropdownItems, setDropdownItems] = useState([]);
 	const [end, setEnd] = useState(newsCategories.length);
+	const nationBtnRef = useRef();
 
 	const under450 = window.matchMedia(
 		"(min-width: 1px) and (max-width: 450px)"
@@ -45,7 +47,7 @@ const TopicsNav = () => {
 	useLayoutEffect(() => {
 		const under450Handler = x => {
 			if (x.matches) {
-				setEnd(1);
+				setEnd(2);
 			}
 			return;
 		};
@@ -100,7 +102,7 @@ const TopicsNav = () => {
 
 	return (
 		<TopicsList>
-			<NationalDropdownButton />
+			<NationalDropdownButton nationBtnRef={nationBtnRef} />
 			{navItems.map(news => (
 				<SNavLink
 					height="100%"

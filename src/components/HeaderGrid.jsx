@@ -6,7 +6,7 @@ import { fadeInItem } from "../styles/animations";
 import moment from "moment";
 import SLink from "../styles/SLink";
 import Button from "../styles/Button";
-import { openLink } from "../utility/helper";
+import A from "../styles/Anchor";
 
 const Header = styled.header`
 	animation: 1s ${fadeInItem} ease;
@@ -124,14 +124,13 @@ const HeaderGrid = ({ articles }) => {
 	return (
 		<Header>
 			<Grid>
-				<GridItem
-					className="first"
-					onClick={() => openLink(articles[0].url)}
-				>
+				<GridItem className="first">
 					<img src={articles[0].urlToImage} alt={articles[0].author} />
 					<Description>
 						<MainTitle color="#fff">
-							{truncate(articles[0].title, 100)}
+							<A href={articles[0].url} target="_blank">
+								{truncate(articles[0].title, 100)}
+							</A>
 						</MainTitle>
 						<Div>
 							<SLink
@@ -144,13 +143,14 @@ const HeaderGrid = ({ articles }) => {
 						</Div>
 					</Description>
 				</GridItem>
-				<GridItem
-					className="second"
-					onClick={() => openLink(articles[1].url)}
-				>
+				<GridItem className="second">
 					<img src={articles[1].urlToImage} alt={articles[1].author} />
 					<Description>
-						<Title color="#fff">{truncate(articles[1].title, 100)}</Title>
+						<Title color="#fff">
+							<A href={articles[1].url} target="_blank">
+								{truncate(articles[1].title, 100)}
+							</A>
+						</Title>
 						<Div>
 							<SLink
 								mright="1rem"
@@ -162,13 +162,14 @@ const HeaderGrid = ({ articles }) => {
 						</Div>
 					</Description>
 				</GridItem>
-				<GridItem
-					className="third"
-					onClick={() => openLink(articles[2].url)}
-				>
+				<GridItem className="third">
 					<img src={articles[2].urlToImage} alt={articles[2].author} />
 					<Description pSize=".8rem">
-						<Title color="#fff">{truncate(articles[2].title, 100)}</Title>
+						<Title color="#fff">
+							<A href={articles[2].url} target="_blank">
+								{truncate(articles[2].title, 100)}
+							</A>
+						</Title>
 						<Div>
 							<SLink
 								mright="1rem"
