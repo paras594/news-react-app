@@ -5,6 +5,11 @@ import ArticlesAsideContainer from "../components/ArticlesAsideContainer";
 import fetchArticlesData from "../redux/actions/fetchArticlesData";
 import { capitalize } from "../utility/helper";
 import Loader from "../components/Loader";
+import {
+	selectArticlesAndAsideData,
+	selectHasError,
+	selectIsLoading,
+} from "../redux/selectors/selectors";
 
 const DomainNews = () => {
 	const params = useParams();
@@ -13,14 +18,11 @@ const DomainNews = () => {
 	const url = `https://newsapi.org/v2/everything?domains=${domain}&apiKey=${
 		process.env.API_KEY
 	}`;
-	const newsState = useSelector(state => state.news);
-	const {
-		isLoading,
-		hasError,
-		articlesData,
-		featuredData,
-		totalArticles,
-	} = newsState;
+	const { featuredData, articlesData, totalArticles } = useSelector(
+		selectArticlesAndAsideData
+	);
+	const isLoading = useSelector(selectIsLoading);
+	const hasError = useSelector(selectHasError);
 
 	const dispatch = useDispatch();
 

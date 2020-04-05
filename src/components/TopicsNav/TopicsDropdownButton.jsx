@@ -1,10 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { v4 as uuid } from "uuid";
-import { clrBlue } from "../styles/Variables";
-import Button from "../styles/Button";
-import Icon from "../styles/Icon";
-import SLink from "../styles/SLink";
+import Button from "../../styles/Button";
+import Icon from "../../styles/Icon";
+import SLink from "../../styles/SLink";
+import {
+	dropdownBg,
+	dropdownShadow,
+	hoverTextLight,
+	hoverBgDark,
+} from "../../styles/Variables";
 
 const Div = styled.div`
 	display: inline-block;
@@ -16,7 +21,7 @@ const Dropdown = styled.ul`
 	top: calc(100% + 0.4rem);
 	right: 0;
 	list-style: none;
-	background: #fff;
+	background: ${dropdownBg};
 	width: 14rem;
 	height: 0;
 	overflow-y: auto;
@@ -25,7 +30,7 @@ const Dropdown = styled.ul`
 	opacity: 0;
 	display: none;
 	z-index: 99;
-	box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.25);
+	box-shadow: ${dropdownShadow};
 	border-top-left-radius: 0.5rem;
 	border-bottom-left-radius: 0.5rem;
 
@@ -53,8 +58,8 @@ const Dropdown = styled.ul`
 		}
 
 		&:hover {
-			background: ${clrBlue};
-			color: #fff;
+			background: ${hoverBgDark};
+			color: ${hoverTextLight};
 		}
 	}
 `;
@@ -90,7 +95,7 @@ const TopicsDropdownButton = ({ topics }) => {
 	return (
 		<Div>
 			<Button height="100%" onClick={toggleDropdown}>
-				<Icon className="fas fa-angle-double-right" />
+				<Icon className="fas fa-angle-right" />
 			</Button>
 			<Dropdown
 				ref={dropdown}

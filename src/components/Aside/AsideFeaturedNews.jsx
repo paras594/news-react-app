@@ -4,14 +4,18 @@ import FeaturedItem from "./FeaturedItem";
 import { v4 as uuid } from "uuid";
 import SLink from "../../styles/SLink";
 import Button from "../../styles/Button";
-import { clrLightGrey } from "../../styles/Variables";
 import { fadeInItem } from "../../styles/animations";
 import { H3 } from "../../styles/Typography";
+import {
+	asideBgColor,
+	buttonBgLightest,
+	buttonTextDark,
+} from "../../styles/Variables";
 
 const Div = styled.div`
 	border-radius: 1rem;
 	align-self: flex-start;
-	background: ${clrLightGrey};
+	background: ${asideBgColor};
 	width: 100%;
 	padding: 1rem 1.6rem;
 
@@ -44,7 +48,7 @@ const AsideFeaturedNews = ({ articles }) => {
 				</div>
 
 				<SLink to="/category/Featured">
-					<Button bg="#fff" shadow>
+					<Button bg={buttonBgLightest} color={buttonTextDark} shadow>
 						View More
 					</Button>
 				</SLink>

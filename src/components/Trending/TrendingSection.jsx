@@ -6,6 +6,7 @@ import { H1 } from "../../styles/Typography";
 import { fadeInItem } from "../../styles/animations";
 import SLink from "../../styles/SLink";
 import Button from "../../styles/Button";
+import { buttonBgDark, buttonTextLight } from "../../styles/Variables";
 
 const Section = styled.section`
 	margin-top: 4.2rem;
@@ -50,7 +51,9 @@ const TrendingSection = ({ articles }) => {
 			<Header>
 				<H1>Trending</H1>
 				<SLink to="/category/Trending">
-					<Button>View More</Button>
+					<Button color={buttonTextLight} bg={buttonBgDark}>
+						View More
+					</Button>
 				</SLink>
 			</Header>
 			<Items>

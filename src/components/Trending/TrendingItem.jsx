@@ -7,9 +7,10 @@ import moment from "moment";
 import SLink from "../../styles/SLink";
 import Button from "../../styles/Button";
 import A from "../../styles/Anchor";
+import { borderColorDark, timeTextDark } from "../../styles/Variables";
 
 const Item = styled.div`
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	border: 1px solid ${borderColorDark};
 	border-radius: 0.5rem;
 	overflow: hidden;
 	display: flex;
@@ -22,7 +23,7 @@ const Img = styled.img`
 	width: 100%;
 	height: 10rem;
 	object-fit: cover;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid ${borderColorDark};
 
 	@media (max-width: 1150px) {
 		height: 16rem;
@@ -54,7 +55,7 @@ const Div = styled.div`
 	p {
 		font-size: 0.8rem;
 		font-weight: 500;
-		color: rgba(0, 0, 0, 0.8);
+		color: ${timeTextDark};
 	}
 `;
 

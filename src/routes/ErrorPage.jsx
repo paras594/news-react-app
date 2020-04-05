@@ -7,6 +7,7 @@ import apiTimeoutImg from "../images/api-timeout.png";
 import notFoundImg from "../images/not-found.png";
 import serverErrorImg from "../images/server-error.png";
 import errorImg from "../images/error.png";
+import { selectError } from "../redux/selectors/selectors";
 
 const Div = styled.div`
 	display: flex;
@@ -76,7 +77,6 @@ const P = styled.p`
 `;
 
 const CallFinishedErrorPage = () => {
-	const newsState = useSelector(state => state.news);
 	const errorsMap = {
 		"426": {
 			img: apiTimeoutImg,
@@ -104,7 +104,7 @@ const CallFinishedErrorPage = () => {
 		},
 	};
 
-	const { error } = newsState;
+	const error = useSelector(selectError);
 	console.log("error-page: ", error);
 
 	const errorType = errorsMap[error.status] || errorsMap["error"];

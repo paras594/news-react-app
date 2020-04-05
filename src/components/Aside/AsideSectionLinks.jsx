@@ -5,10 +5,11 @@ import newsCategories from "../../utility/newsCategories";
 import { v4 as uuid } from "uuid";
 import Button from "../../styles/Button";
 import Icon from "../../styles/Icon";
+import { asideBgColor, buttonTextDark } from "../../styles/Variables";
 
 const Div = styled.div`
 	border-radius: 1rem;
-	background: #efefef;
+	background: ${asideBgColor};
 	width: 100%;
 	padding: 1rem 1.6rem;
 	position: sticky;
@@ -52,6 +53,8 @@ const AsideSectionLinks = () => {
 						<Button
 							fontSize="1rem"
 							small
+							bg={asideBgColor}
+							color={buttonTextDark}
 							onClick={() => handleClick(item.category)}
 						>
 							{item.category}

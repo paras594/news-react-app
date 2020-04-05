@@ -1,21 +1,22 @@
 import React, { useState, useLayoutEffect, useEffect, useRef } from "react";
 import styled from "styled-components";
-import newsCategories from "../utility/newsCategories";
+import newsCategories from "../../utility/newsCategories";
 import { v4 as uuid } from "uuid";
 import NationalDropdownButton from "./NationalDropdownButton";
-import Button from "../styles/Button";
-import SNavLink from "../styles/SNavLink";
+import Button from "../../styles/Button";
+import SNavLink from "../../styles/SNavLink";
 import TopicsDropdownButton from "./TopicsDropdownButton";
+import { primary } from "../../styles/Variables";
 
 const TopicsList = styled.div`
 	position: relative;
-	background: #eee;
+	background: ${primary};
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	align-items: center;
 	margin-top: 0.2rem;
 	margin-bottom: 2rem;
-	border-radius: 4rem;
+	border-radius: 5rem;
 	height: 2.4rem;
 	z-index: 99;
 

@@ -2,10 +2,14 @@ import React, { useState, useLayoutEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import BrandName from "./BrandName";
-import Icon from "../styles/Icon";
-import Button from "../styles/Button";
-import { clrBlue } from "../styles/Variables";
-import { trim } from "../utility/helper";
+import Icon from "../../styles/Icon";
+import Button from "../../styles/Button";
+import {
+	secondary,
+	buttonTextDark,
+	buttonBgLight,
+} from "../../styles/Variables";
+import { trim } from "../../utility/helper";
 
 const Nav = styled.nav`
 	display: flex;
@@ -52,7 +56,7 @@ const Form = styled.form`
 		}
 
 		&:focus {
-			border: 1px solid ${clrBlue};
+			border: 1px solid ${secondary};
 		}
 	}
 `;
@@ -102,7 +106,7 @@ const Navbar = () => {
 			<BrandName />
 			<Form onSubmit={handleFormSubmit}>
 				<input type="text" value={value} onChange={handleInputChange} />
-				<Button type="submit">
+				<Button type="submit" bg={buttonBgLight} color={buttonTextDark}>
 					<Icon
 						mright={showText ? ".3rem" : "0"}
 						fontSize=".8rem"

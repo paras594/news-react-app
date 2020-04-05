@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,22 +9,22 @@ import Main from "../components/Main/Main";
 import Aside from "../components/Aside/Aside";
 import fetchHomepageData from "../redux/actions/fetchHomepageData.js";
 import Loader from "../components/Loader";
+import {
+	selectHomepageData,
+	selectIsLoading,
+	selectHasError,
+} from "../redux/selectors/selectors";
 
 const FlexContainer = styled.section`
 	display: flex;
 `;
 
 const Homepage = () => {
-	const newsState = useSelector(state => state.news);
-
-	const {
-		isLoading,
-		headerData,
-		trendingData,
-		featuredData,
-		mainRes,
-		hasError,
-	} = newsState;
+	const { headerData, trendingData, featuredData, mainRes } = useSelector(
+		selectHomepageData
+	);
+	const isLoading = useSelector(selectIsLoading);
+	const hasError = useSelector(selectHasError);
 
 	const dispatch = useDispatch();
 

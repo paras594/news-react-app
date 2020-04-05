@@ -7,6 +7,7 @@ import moment from "moment";
 import Button from "../styles/Button";
 import SLink from "../styles/SLink";
 import A from "../styles/Anchor";
+import { borderColorDark, timeTextDark } from "../styles/Variables";
 
 const Item = styled.div`
 	display: grid;
@@ -14,7 +15,7 @@ const Item = styled.div`
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 	margin-left: 0.4rem;
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	border: 1px solid ${borderColorDark};
 	border-radius: 0.5rem;
 	overflow: hidden;
 
@@ -36,7 +37,7 @@ const Item = styled.div`
 const ImgContainer = styled.div`
 	overflow: hidden;
 	height: calc(12rem / 1.5);
-	border-right: 1px solid rgba(0, 0, 0, 0.2);
+	border-right: 1px solid ${borderColorDark};
 	cursor: pointer;
 
 	@media (max-width: 700px) {
@@ -46,7 +47,7 @@ const ImgContainer = styled.div`
 	@media (max-width: 520px) {
 		height: 16rem;
 		border-right: 0;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+		border-bottom: 1px solid ${borderColorDark};
 	}
 
 	img {
@@ -79,7 +80,7 @@ const Div = styled.div`
 	p {
 		font-size: 0.8rem;
 		font-weight: 500;
-		color: rgba(0, 0, 0, 0.8);
+		color: ${timeTextDark};
 	}
 `;
 

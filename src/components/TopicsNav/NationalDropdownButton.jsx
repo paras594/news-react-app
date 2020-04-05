@@ -1,11 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
-import newsCountries from "../utility/newsCountries";
 import { v4 as uuid } from "uuid";
-import Button from "../styles/Button";
-import Icon from "../styles/Icon";
-import SLink from "../styles/SLink";
-import { clrBlue } from "../styles/Variables";
+import newsCountries from "../../utility/newsCountries";
+import Button from "../../styles/Button";
+import Icon from "../../styles/Icon";
+import SLink from "../../styles/SLink";
+import {
+	dropdownBg,
+	dropdownShadow,
+	hoverBgDark,
+	hoverTextLight,
+	buttonBgDark,
+	buttonTextLight,
+} from "../../styles/Variables";
 
 const Div = styled.div`
 	display: inline-block;
@@ -17,7 +24,7 @@ const Dropdown = styled.ul`
 	top: calc(100% + 0.4rem);
 	left: 0;
 	list-style: none;
-	background: #fff;
+	background: ${dropdownBg};
 	width: 14rem;
 	height: 0;
 	overflow-y: auto;
@@ -26,7 +33,7 @@ const Dropdown = styled.ul`
 	opacity: 0;
 	display: none;
 	z-index: 99;
-	box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.25);
+	box-shadow: ${dropdownShadow};
 	border-top-left-radius: 0.5rem;
 	border-bottom-left-radius: 0.5rem;
 
@@ -54,8 +61,8 @@ const Dropdown = styled.ul`
 		}
 
 		&:hover {
-			background: ${clrBlue};
-			color: #fff;
+			background: ${hoverBgDark};
+			color: ${hoverTextLight};
 		}
 	}
 `;
@@ -88,7 +95,12 @@ const NationalDropdownButton = () => {
 
 	return (
 		<Div>
-			<Button height="100%" onClick={toggleDropdown}>
+			<Button
+				bg={buttonBgDark}
+				color={buttonTextLight}
+				height="100%"
+				onClick={toggleDropdown}
+			>
 				National <Icon mleft=".5rem" className="fas fa-angle-down" />
 			</Button>
 			<Dropdown ref={dropdown}>

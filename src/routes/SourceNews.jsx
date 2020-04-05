@@ -4,6 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import ArticlesAsideContainer from "../components/ArticlesAsideContainer";
 import fetchArticlesData from "../redux/actions/fetchArticlesData";
 import Loader from "../components/Loader";
+import {
+	selectArticlesAndAsideData,
+	selectHasError,
+	selectIsLoading,
+} from "../redux/selectors/selectors";
 
 const SourceNews = () => {
 	const params = useParams();
@@ -12,14 +17,11 @@ const SourceNews = () => {
 	const url = `https://newsapi.org/v2/everything?sources=${source}&apiKey=${
 		process.env.API_KEY
 	}`;
-	const newsState = useSelector(state => state.news);
-	const {
-		isLoading,
-		hasError,
-		articlesData,
-		featuredData,
-		totalArticles,
-	} = newsState;
+	const { featuredData, articlesData, totalArticles } = useSelector(
+		selectArticlesAndAsideData
+	);
+	const isLoading = useSelector(selectIsLoading);
+	const hasError = useSelector(selectHasError);
 
 	const dispatch = useDispatch();
 

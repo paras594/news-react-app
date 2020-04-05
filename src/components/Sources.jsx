@@ -8,6 +8,7 @@ import EuroNews from "../images/source-euro-news.png";
 import NBCNews from "../images/source-nbc-news.png";
 import NDTVNews from "../images/source-ndtv-news.png";
 import { Link } from "react-router-dom";
+import { borderColorLight } from "../styles/Variables";
 
 const Section = styled.section`
 	margin-top: 4rem;
@@ -51,8 +52,9 @@ const StyledLink = styled(Link)`
 	align-items: center;
 	border-radius: 50%;
 	overflow: hidden;
-	border: 1px solid rgba(0, 0, 0, 0.3);
-	transition: box-shadow 0.2s ease;
+	border: 1px solid ${borderColorLight};
+	transform: scale(1);
+	transition: transform 0.2s ease;
 
 	@media (max-width: 1350px) {
 		height: 6rem;
@@ -70,7 +72,7 @@ const StyledLink = styled(Link)`
 	}
 
 	&:hover {
-		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+		transform: scale(1.05);
 	}
 `;
 

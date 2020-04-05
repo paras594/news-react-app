@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
-import { clrLightGrey, clrBlue } from "../styles/Variables";
+import {
+	buttonBgLight,
+	buttonTextDark,
+	hoverBgDark,
+	hoverTextLight,
+} from "../styles/Variables";
 
 const PaginationContainer = styled.div`
 	display: flex;
@@ -22,10 +27,10 @@ const Button = styled.button`
 	justify-content: center;
 	outline: none;
 	font-size: 1.2rem;
-	background: ${clrLightGrey};
+	background: ${buttonBgLight};
 	border: none;
 	cursor: pointer;
-	color: rgba(0, 0, 0, 0.8);
+	color: ${buttonTextDark};
 
 	@media (max-width: 1350px) {
 		height: 2.6rem;
@@ -36,7 +41,7 @@ const Button = styled.button`
 const PageButtons = styled.div`
 	border-radius: 4rem;
 	overflow: hidden;
-	background: ${clrLightGrey};
+	background: ${buttonBgLight};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -60,7 +65,7 @@ const PageButtons = styled.div`
 		justify-content: center;
 		align-items: center;
 		font-size: 0.8rem;
-		color: rgba(0, 0, 0, 0.9);
+		color: ${buttonTextDark};
 
 		@media (max-width: 1350px) {
 			font-size: 1rem;
@@ -69,8 +74,8 @@ const PageButtons = styled.div`
 		}
 
 		&.active {
-			background: ${clrBlue};
-			color: #fff;
+			background: ${hoverBgDark};
+			color: ${hoverTextLight};
 		}
 	}
 `;

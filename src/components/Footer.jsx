@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { primary, footerText } from "../styles/Variables";
 
 const Footer = styled.footer`
 	padding: 1rem;
 	text-align: center;
 	font-size: 0.8rem;
-	color: #fff;
-	background: #000;
+	color: ${footerText};
+	background: ${primary};
 	display: block;
 	width: 100%;
 	a {

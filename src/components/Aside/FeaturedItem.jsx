@@ -5,6 +5,12 @@ import { truncate, openLink } from "../../utility/helper";
 import moment from "moment";
 import { P } from "../../styles/Typography";
 import A from "../../styles/Anchor";
+import {
+	shadowColor,
+	timeTextLight,
+	featuredItemBg,
+	headingColorDark,
+} from "../../styles/Variables";
 
 const ImgContainer = styled.div`
 	height: 11rem;
@@ -23,7 +29,7 @@ const ImgContainer = styled.div`
 	p {
 		position: absolute;
 		z-index: 99;
-		color: rgba(255, 255, 255, 0.9);
+		color: ${timeTextLight};
 		background: rgba(0, 0, 0, 0.5);
 		padding: 0.25rem 0.5rem;
 		bottom: 0.4rem;
@@ -35,10 +41,10 @@ const ImgContainer = styled.div`
 
 const Item = styled.div`
 	margin-bottom: 1.8rem;
-	background: #fff;
+	background: ${featuredItemBg};
 	border-radius: 0.5rem;
 	overflow: hidden;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 10px ${shadowColor};
 `;
 
 const Title = styled(P)`
@@ -67,7 +73,7 @@ const FeaturedItem = ({ article }) => {
 				/>
 				<p>{moment(article.publishedAt).fromNow()}</p>
 			</ImgContainer>
-			<Title size="0.9rem" weight="700" color="rgba(0, 0, 0, 0.9)">
+			<Title size="0.9rem" weight="700" color={headingColorDark}>
 				<A href={article.url} target="_blank">
 					{truncate(article.title, 120)}
 				</A>

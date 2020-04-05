@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { buttonTextLight, primary } from "./Variables";
 
 const SNavLink = styled(NavLink)`
 	text-decoration: none;
@@ -13,8 +14,8 @@ const SNavLink = styled(NavLink)`
 
 	&.active {
 		button {
-			background: royalblue;
-			color: #fff;
+			background: ${primary};
+			color: ${buttonTextLight};
 		}
 	}
 `;

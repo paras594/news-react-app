@@ -5,7 +5,6 @@ import NewsItem from "../NewsItem";
 import { H1 } from "../../styles/Typography";
 import SLink from "../../styles/SLink";
 import Button from "../../styles/Button";
-
 import { fadeInItem } from "../../styles/animations";
 
 const Section = styled.section`

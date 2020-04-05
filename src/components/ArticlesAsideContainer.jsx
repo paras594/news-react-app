@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { fadeInItem } from "../styles/animations";
-import { H1 } from "../styles/Typography";
 import Aside from "../components/Aside/Aside";
 import Articles from "../components/Articles";
 import Pagination from "./Pagination";
+import { capitalize } from "../utility/helper";
+import { H1 } from "../styles/Typography";
+import { fadeInItem } from "../styles/animations";
 import SLink from "../styles/SLink";
 import Icon from "../styles/Icon";
 import Button from "../styles/Button";
-import { capitalize } from "../utility/helper";
+import { buttonBgLight, buttonTextDark } from "../styles/Variables";
 
 const Wrapper = styled.div`
 	animation: ${fadeInItem} 1s ease;
@@ -51,7 +52,7 @@ const ArticlesAsideContainer = ({
 	return (
 		<Wrapper>
 			<SLink mbottom="2rem" to="/">
-				<Button>
+				<Button bg={buttonBgLight} color={buttonTextDark}>
 					<Icon mright=".5rem" className="fas fa-angle-left" /> Go to Home
 				</Button>
 			</SLink>

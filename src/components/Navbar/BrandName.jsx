@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import SLink from "../styles/SLink";
-import { H4 } from "../styles/Typography";
+import SLink from "../../styles/SLink";
+import { H4 } from "../../styles/Typography";
+import { brandFont } from "../../styles/Variables";
 
 const Title = styled(H4)`
 	padding: 0 0.5rem;
-	font-family: "Cinzel Decorative", sans-serif;
+	font-family: ${brandFont};
 `;
 
 const BrandName = () => {

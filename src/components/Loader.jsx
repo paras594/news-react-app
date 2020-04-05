@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import { fadeOutItem } from "../styles/animations";
-import { clrBlue } from "../styles/Variables";
+import { secondary, mainLight } from "../styles/Variables";
 
 const rotate = keyframes`
   from {
@@ -29,7 +29,7 @@ const Div = styled.div`
 	width: 4rem;
 	height: 4rem;
 	border: 0.4rem solid;
-	border-color: ${clrBlue} #ddd #ddd #ddd;
+	border-color: ${secondary} ${mainLight} ${mainLight} ${mainLight};
 	background: transparent;
 	border-radius: 50%;
 	animation: ${rotate} 1s infinite;
@@ -38,16 +38,14 @@ const Div = styled.div`
 		width: 3rem;
 		height: 3rem;
 		border: 0.3rem solid;
-		border-color: ${clrBlue} #ddd #ddd #ddd;
+		border-color: ${secondary} ${mainLight} ${mainLight} ${mainLight};
 	}
 `;
 
 const Loader = () => {
 	const [fadeOut, setFadeOut] = useState(false);
 	useEffect(() => {
-		console.log("mounted loader");
 		return () => {
-			console.log("unmounted loader");
 			setFadeOut(true);
 		};
 	}, []);

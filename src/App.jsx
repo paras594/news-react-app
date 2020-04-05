@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Container from "./styles/Container";
 import styled from "styled-components";
 
-import Navbar from "./components/Navbar";
-import TopicsNav from "./components/TopicsNav";
+import Navbar from "./components/Navbar/Navbar";
+import TopicsNav from "./components/TopicsNav/TopicsNav";
 import Homepage from "./routes/Homepage";
 import CategoryNews from "./routes/CategoryNews";
 import SourceNews from "./routes/SourceNews";

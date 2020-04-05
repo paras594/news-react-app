@@ -6,6 +6,11 @@ import fetchArticlesData from "../redux/actions/fetchArticlesData";
 import allCategoriesMap from "../utility/allCategoriesMap";
 import { capitalize } from "../utility/helper";
 import Loader from "../components/Loader";
+import {
+	selectArticlesAndAsideData,
+	selectHasError,
+	selectIsLoading,
+} from "../redux/selectors/selectors";
 
 const CategoryNews = () => {
 	const params = useParams();
@@ -13,14 +18,11 @@ const CategoryNews = () => {
 	const pageSize = 100;
 	const urls = allCategoriesMap;
 	const url = urls[capitalize(category)];
-	const newState = useSelector(state => state.news);
-	const {
-		isLoading,
-		hasError,
-		featuredData,
-		articlesData,
-		totalArticles,
-	} = newState;
+	const { featuredData, articlesData, totalArticles } = useSelector(
+		selectArticlesAndAsideData
+	);
+	const isLoading = useSelector(selectIsLoading);
+	const hasError = useSelector(selectHasError);
 
 	const dispatch = useDispatch();
 

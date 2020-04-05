@@ -5,6 +5,11 @@ import countryCodeMap from "../utility/countryCodeMap";
 import ArticlesAsideContainer from "../components/ArticlesAsideContainer";
 import fetchArticlesData from "../redux/actions/fetchArticlesData";
 import Loader from "../components/Loader";
+import {
+	selectArticlesAndAsideData,
+	selectHasError,
+	selectIsLoading,
+} from "../redux/selectors/selectors";
 
 const CountryNews = () => {
 	const params = useParams();
@@ -13,14 +18,11 @@ const CountryNews = () => {
 	const url = `https://newsapi.org/v2/top-headlines?country=${countryCode}&apiKey=${
 		process.env.API_KEY
 	}`;
-	const newsState = useSelector(state => state.news);
-	const {
-		isLoading,
-		articlesData,
-		hasError,
-		featuredData,
-		totalArticles,
-	} = newsState;
+	const { featuredData, articlesData, totalArticles } = useSelector(
+		selectArticlesAndAsideData
+	);
+	const isLoading = useSelector(selectIsLoading);
+	const hasError = useSelector(selectHasError);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
