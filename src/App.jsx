@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Container from "./styles/Container";
 import styled from "styled-components";
+import Container from "./styles/Container";
 
 import Navbar from "./components/Navbar/Navbar";
 import TopicsNav from "./components/TopicsNav/TopicsNav";
