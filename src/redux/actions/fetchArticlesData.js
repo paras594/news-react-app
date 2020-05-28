@@ -12,9 +12,11 @@ export default function fetchArticlesData(articlesUrl, pageSize) {
 		dispatch(startLoading());
 		try {
 			const [sourceRes, asideRes] = await axios.all([
-				axios.get(articlesUrl, { params: { pageSize } }),
+				axios.get("https://cors-anywhere.herokuapp.com/" + articlesUrl, {
+					params: { pageSize },
+				}),
 				axios.get(
-					`https://newsapi.org/v2/everything?sources=${
+					`https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?sources=${
 						random() ? "entertainment-weekly" : "mashable"
 					}&apiKey=${process.env.API_KEY}`,
 					{ params: { pageSize: 3 } }

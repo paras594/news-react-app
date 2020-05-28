@@ -11,13 +11,15 @@ async function getHomepageData() {
 	}&pageSize=3&apiKey=${apikey}`;
 	const mainUrls = newsCategories.map(i => i.categoryUrl);
 	const mainPromises = mainUrls.map(url =>
-		axios.get(url, { params: { pageSize: 4 } })
+		axios.get("https://cors-anywhere.herokuapp.com/" + url, {
+			params: { pageSize: 4 },
+		})
 	);
 
 	const [headerRes, trendingRes, featuredRes, ...mainRes] = await axios.all([
-		axios.get(headerUrl),
-		axios.get(trendingUrl),
-		axios.get(featuredUrl),
+		axios.get("https://cors-anywhere.herokuapp.com/" + headerUrl),
+		axios.get("https://cors-anywhere.herokuapp.com/" + trendingUrl),
+		axios.get("https://cors-anywhere.herokuapp.com/" + featuredUrl),
 		...mainPromises,
 	]);
 
