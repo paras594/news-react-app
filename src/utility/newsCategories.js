@@ -13,7 +13,7 @@ const newsCategories = [
 	},
 	{
 		category: "Business",
-		categoryUrl: `https://newsapi.org/v2/everything?sources=cnbc&apiKey=${
+		categoryUrl: `https://newsapi.org/v2/everything?sources=business-insider&apiKey=${
 			process.env.API_KEY
 		}`,
 	},
